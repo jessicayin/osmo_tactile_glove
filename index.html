@@ -252,7 +252,7 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p class="abstract-text">
-              Human video demonstrations provide abundant training data for learning robot policies, but video alone cannot capture the rich contact signals critical for mastering manipulation. We introduce <strong>OSMO</strong>: the <strong><u>O</u></strong>pen <strong><u>S</u></strong>ource tactile glove for hu<strong><u>M</u></strong>an-to-rob<strong><u>O</u></strong>t skill transfer. The glove features 12 three-axis tactile sensors across the fingertips and palm and is designed to be compatible with state-of-the-art hand-tracking methods for in-the-wild data collection.
+              Human video demonstrations provide abundant training data for learning robot policies, but video alone cannot capture the rich contact signals critical for mastering manipulation. We introduce <strong>OSMO</strong>: the <strong><u>O</u></strong>pen <strong><u>S</u></strong>ource tactile glove for hu<strong><u>M</u></strong>an-to-rob<strong><u>O</u></strong>t skill transfer. The glove features 12 three-axis tactile sensors across the fingertips and palm and is designed to be compatible with SOTA hand-tracking methods for in-the-wild data collection.
             </p>
             <p class="abstract-text">
               We demonstrate that a robot policy trained exclusively on human demonstrations collected with OSMO, <em>without any real robot data</em>, is capable of executing a challenging contact-rich manipulation task. By equipping both the human and the robot with the same glove, OSMO minimizes the visual and tactile embodiment gap, enabling the transfer of continuous shear and normal force feedback while avoiding the need for image inpainting or other vision-based force inference. On a real-world wiping task requiring sustained contact pressure, our tactile-aware policy achieves a 72% success rate, outperforming vision-only baselines by eliminating contact-related failure modes. We release complete hardware designs, firmware, and assembly instructions to support community adoption.
@@ -279,10 +279,7 @@
                 <div class="gallery-caption">
                   <h3 class="gallery-caption-title">Magnetic Tactile Sensor Assembly</h3>
                   <p class="has-text-justified">
-                    When the soft magnetic elastomers are deformed, the magnetometers measure changes in magnetic flux, which can be correlated to applied XYZ forces. We directly use the raw magnetic flux signals (μT) as tactile data.
-                  </p>
-                  <p class="has-text-justified" style="margin-top: 1rem;">
-                    This magnetic sensor assembly includes MuMetal shielding designed to reduce cross-talk and improve signal fidelity.
+                    When the soft magnetic elastomers are deformed, the magnetometers measure changes in magnetic flux, which can be correlated to applied XYZ forces. 
                   </p>
                 </div>
               </div>
@@ -295,7 +292,13 @@
                 <div class="gallery-caption">
                   <h3 class="gallery-caption-title">PCBs: Sensors and MCU Boards</h3>
                   <p class="has-text-justified">
-                    The 12 sensor PCBs communicate with an STM32 microcontroller via I2C, enabling modular addition or removal of sensors. Data streams to a host computer via USB-C, with native Python and ROS2 interfaces supporting time-synchronized sensor packets. The complete glove requires only USB-C for power and data. Alternatively, the microcontroller also accomodates a small LiPo battery and a microSD card slot for wireless operation.
+                    The 12 sensor PCBs communicate with an STM32 microcontroller via I2C, enabling modular addition or removal of sensors. 
+                    </p>
+                    <p class="has-text-justified" style="margin-top: 1rem;">
+                    Data streams to a host computer via USB-C, with native Python and ROS2 interfaces supporting time-synchronized sensor packets. 
+                    </p>
+                    <p class="has-text-justified" style="margin-top: 1rem;">
+                    The complete glove requires only USB-C for power and data. Alternatively, the microcontroller also accomodates a small LiPo battery and a microSD card slot for wireless operation.
                   </p>
                 </div>
               </div>
@@ -308,7 +311,15 @@
                 <div class="gallery-caption">
                   <h3 class="gallery-caption-title">Glove Layout</h3>
                   <p class="has-text-justified">
-                    The OSMO glove provide tactile coverage on both fingertips and palm while omitting the intermediate and proximal phalanges. This design choice accommodates varying hand sizes by allowing flexible finger lengths while ensuring consistent sensor placement at the primary contact regions. The palm sensors are arranged in three sections aligned with the major planar regions of palm motion. An outer beige glove provides uniform appearance and protects the electronics.
+                    The OSMO glove provide tactile coverage on both fingertips and palm while omitting the intermediate and proximal phalanges. This design choice accommodates varying hand sizes by allowing flexible finger lengths while ensuring consistent sensor placement at the primary contact regions. 
+                    </p>
+                    
+                    <p class="has-text-justified" style="margin-top: 1rem;">
+                    The palm sensors are arranged in three sections aligned with the major planar regions of palm motion. 
+                    </p>
+                    
+                    <p class="has-text-justified" style="margin-top: 1rem;">
+                    An outer beige glove provides uniform appearance and protects the electronics.
                   </p>
                 </div>
               </div>
@@ -324,8 +335,12 @@
                 <div class="gallery-caption">
                   <h3 class="gallery-caption-title">Seamlessly Compatible with In-the-Wild Hand Tracking</h3>
                   <p class="has-text-justified">
-                    Human demonstrations require hand and wrist poses to provide action labels. Recent advances in vision-based hand estimation with wearable headsets and RGB cameras enable tracking in-the-wild, but these methods are trained primarily on bare human hands. We design the OSMO glove's visual appearance to minimize the distribution shift from bare hand datasets: a low-profile electronics layout and beige-colored fabric.
-
+                    Human demonstrations require hand and wrist poses to provide action labels. Recent advances in vision-based hand estimation with wearable headsets and RGB cameras enable tracking in-the-wild, but these methods are trained primarily on bare human hands. 
+                    </p>
+                    <p class="has-text-justified" style="margin-top: 1rem;">
+                    We design the OSMO glove's visual appearance to minimize the distribution shift from bare hand datasets: a low-profile electronics layout and beige-colored fabric.
+                    </p>
+                    <p class="has-text-justified" style="margin-top: 1rem;">
                     As a result, vision-based hand trackers recognize the OSMO glove as a hand with <strong>no modifications to the hand tracking algorithms.</strong>
                   </p>
                 </div>
@@ -355,7 +370,7 @@
                     <strong>1. Unrestrained human dexterity during demonstration collection.</strong> Constraints on dexterity can create practical barriers to the speed and required skill level of collecting data. Recent advances in dexterous robot hand hardware and human-to-robot kinematic retargeting methods can enable direct transfer from human demonstrations to deployable robot policies, removing the need to restrain human dexterity during data collection.
                   </p>
                   <p class="has-text-justified" style="margin-top: 1rem;">
-                    <strong>2. Rich normal and shear force sensing.</strong> Human manipulation involves both normal and shear force feedback. Prior wearable tactile sensors have predominantly focused on normal forces, limiting the contact information collected. Magnetic tactile sensors enable measurement of all three force axes in a thin form factor that allows for feel-through haptic feedback to the demonstrator. We equip the glove with 12 taxels on the fingertips and palm, with a sensing range of 0.3 N - 80 N.
+                    <strong>2. Rich normal and shear force sensing.</strong> Human manipulation involves both normal and shear force feedback. Magnetic tactile sensors enable measurement of all three force axes in a thin form factor that allows for feel-through haptic feedback to the demonstrator. We equip the glove with 12 taxels on the fingertips and palm, with a sensing range of 0.3 N - 80 N.
                   </p>
                   <p class="has-text-justified" style="margin-top: 1rem;">
                     <strong>3. Full hand tactile coverage.</strong> Contact during dexterous manipulation occurs across the entire hand surface, with the palm playing a critical role in stabilization and grasping. We provide tactile coverage on both fingertips and palm while omitting the intermediate and proximal phalanges. This design choice accommodates varying hand sizes by allowing flexible finger lengths while ensuring consistent sensor placement at the primary contact regions. 
@@ -378,6 +393,24 @@
             <button class="carousel-nav-button" onclick="nextSlide('osmo-gallery')" aria-label="Next image">
               <i class="fas fa-chevron-right"></i>
             </button>
+          </div>
+        </div>
+      </div>
+
+            <!-- Rich Shear and Normal Tactile Signals -->
+      <div class="gallery-subsection" style="margin-top: 4rem;">
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 2rem;">Rich Shear and Normal Tactile Signals</h2>
+        <div class="columns is-vcentered" style="gap: 2rem;">
+          <div class="column is-one-quarter">
+            <video controls autoplay loop muted class="gallery-video" style="border-radius: var(--border-radius);">
+              <source src="videos/tactile_data.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="column is-three-quarters">
+            <p class="has-text-justified">
+              The OSMO tactile glove features 12 three-axis magnetic tactile sensors across the fingertips and palm. We directly use the raw magnetic flux signals (μT) as tactile data.
+            </p>
           </div>
         </div>
       </div>
@@ -409,7 +442,7 @@
 
       <!-- Human to Robot Policy Rollouts -->
       <div class="gallery-subsection" style="margin-top: 4rem;">
-        <h2 class="title is-3 has-text-centered" style="margin-bottom: 2rem;">Human to Robot Policy Rollouts</h2>
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 2rem;">Robot Policy Learned from Human Glove Demonstrations</h2>
         <div class="columns is-vcentered" style="gap: 2rem;">
           <div class="column is-two-fifths">
             <video controls autoplay loop muted class="gallery-video" style="border-radius: var(--border-radius); box-shadow: var(--shadow-md);">
@@ -421,6 +454,60 @@
             <p class="has-text-justified">
               We demonstrate that a robot policy trained exclusively on human demonstrations collected with OSMO, without any real robot data, is capable of executing a challenging contact-rich manipulation task. On a real-world wiping task requiring sustained contact pressure, our tactile-aware policy achieves a 72% success rate, outperforming vision-only baselines by eliminating contact-related failure modes.
             </p>
+          </div>
+        </div>
+
+        <!-- Human Demonstration Collection -->
+        <div style="margin-top: 3rem;">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 1.5rem;">Human Demonstration Collection</h3>
+          <div class="columns is-vcentered" style="gap: 2rem;">
+            <div class="column is-two-fifths">
+              <video controls autoplay loop muted class="gallery-video" style="border-radius: var(--border-radius);">
+                <source src="videos/osmo_demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-three-fifths">
+              <p class="has-text-justified">
+                We collect approximately 2 hours (140 demos) of OSMO glove and Realsense RGB + IR videos of wiping a whiteboard.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Robot Policy -->
+        <div style="margin-top: 3rem;">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 1.5rem;">Robot Policy</h3>
+          <div class="columns is-vcentered" style="gap: 2rem;">
+            <div class="column is-two-fifths">
+              <video controls autoplay loop muted class="gallery-video" style="border-radius: var(--border-radius);">
+                <source src="videos/glove_robot_rollouts.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-three-fifths">
+              <p class="has-text-justified">
+                We equip the robot with the same OSMO glove and find that we can directly roll out policies.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Policy Failure Analysis -->
+        <div style="margin-top: 3rem;">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 1.5rem;">Policy Failure Analysis</h3>
+          <div class="columns is-vcentered" style="gap: 2rem;">
+            <div class="column is-two-fifths">
+              <video controls autoplay loop muted class="gallery-video" style="border-radius: var(--border-radius);">
+                <source src="videos/policy_failure.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-three-fifths">
+              <p class="has-text-justified">
+                Our policy is more successful because we can eliminate contact-related failures.
+              </p>
+            </div>
           </div>
         </div>
       </div>
