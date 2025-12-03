@@ -1,0 +1,21 @@
+# Ignore paper source files (LaTeX, figures, build artifacts)
+paper_source/
+
+# Common OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Node
+node_modules/
+dist/
+
+# Build artifacts
+*.aux
+*.log
+*.out
+*.pdf

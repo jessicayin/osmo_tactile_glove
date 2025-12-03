@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title" content="OSMO: Open-Source Tactile Glove for Human-to-Robot Skill Transfer">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="OSMO is an open-source wearable tactile glove with 12 three-axis sensors for human-to-robot skill transfer. Train robot policies from human demonstrations without robot data.">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords" content="tactile sensing, robotics, human-to-robot transfer, imitation learning, tactile glove, magnetic sensors, dexterous manipulation, open source, wearable devices, contact-rich manipulation">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="Jessica Yin, Haozhi Qi, Youngsun Wi, Sayantan Kundu, Mike Lambeta, William Yang, Changhao Wang, Tingfan Wu, Jitendra Malik, Tess Hellebrekers">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="Osmo Tactile Glove Project">
+  <meta property="og:title" content="OSMO: Open-Source Tactile Glove for Human-to-Robot Skill Transfer">
+  <meta property="og:description" content="OSMO is an open-source wearable tactile glove with 12 three-axis sensors for human-to-robot skill transfer. Train robot policies from human demonstrations without robot data.">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://jessicayin.github.io/osmo_tactile_glove">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://jessicayin.github.io/osmo_tactile_glove/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Osmo Tactile Glove - Research Preview">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OSMO: Open-Source Tactile Glove for Human-to-Robot Skill Transfer">
+  <meta name="twitter:description" content="OSMO is an open-source wearable tactile glove with 12 three-axis sensors for human-to-robot skill transfer. Train robot policies from human demonstrations without robot data.">
+  <meta name="twitter:image" content="https://jessicayin.github.io/osmo_tactile_glove/static/images/social_preview.png">
+  
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="OSMO: Open-Source Tactile Glove for Human-to-Robot Skill Transfer">
+  <meta name="citation_author" content="Jessica Yin">
+  <meta name="citation_author" content="Haozhi Qi">
+  <meta name="citation_author" content="Youngsun Wi">
+  <meta name="citation_author" content="Sayantan Kundu">
+  <meta name="citation_author" content="Mike Lambeta">
+  <meta name="citation_author" content="William Yang">
+  <meta name="citation_author" content="Changhao Wang">
+  <meta name="citation_author" content="Tingfan Wu">
+  <meta name="citation_author" content="Jitendra Malik">
+  <meta name="citation_author" content="Tess Hellebrekers">
+  <meta name="citation_publication_date" content="2024">
+  <!-- TODO: Update with actual paper details -->
+  <meta name="citation_conference_title" content="Conference Name">
+  <meta name="citation_pdf_url" content="https://jessicayin.github.io/osmo_tactile_glove/static/pdfs/paper.pdf">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>OSMO: Open-Source Tactile Glove for Human-to-Robot Skill Transfer</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  
+  <!-- Fonts - Using system fonts for better performance and consistency -->
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Carousel (optional, for image carousels) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "OSMO: Open-Source Tactile Glove for Human-to-Robot Skill Transfer",
+    "description": "OSMO is an open-source wearable tactile glove with 12 three-axis sensors for human-to-robot skill transfer. Train robot policies from human demonstrations without robot data.",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jessica Yin",
+        "url": "https://jessicayin.github.io/"
+      },
+      {
+        "@type": "Person",
+        "name": "Haozhi Qi",
+        "url": "https://haozhi.io/"
+      },
+      {
+        "@type": "Person",
+        "name": "Youngsun Wi",
+        "url": "https://sites.google.com/umich.edu/youngsun-wi/home"
+      },
+      {
+        "@type": "Person",
+        "name": "Sayantan Kundu",
+        "url": "https://linkedin.com/in/sayantank"
+      },
+      {
+        "@type": "Person",
+        "name": "Mike Lambeta",
+        "url": "https://scholar.google.com/citations?user=p6DCMrQAAAAJ&hl=en"
+      },
+      {
+        "@type": "Person",
+        "name": "William Yang",
+        "url": "https://yangwill.github.io/"
+      },
+      {
+        "@type": "Person",
+        "name": "Changhao Wang",
+        "url": "https://changhaowang.github.io/"
+      },
+      {
+        "@type": "Person",
+        "name": "Tingfan Wu",
+        "url": "https://scholar.google.com/citations?user=9bt2Z5QAAAAJ&hl=en"
+      },
+      {
+        "@type": "Person",
+        "name": "Jitendra Malik",
+        "url": "https://people.eecs.berkeley.edu/~malik/"
+      },
+      {
+        "@type": "Person",
+        "name": "Tess Hellebrekers",
+        "url": "https://www.tesshellebrekers.com/"
+      }
+    ],
+    "datePublished": "2024",
+    "url": "https://jessicayin.github.io/osmo_tactile_glove",
+    "keywords": ["tactile sensing", "robotics", "tactile glove", "open source"],
+    "isAccessibleForFree": true,
+    "license": "https://opensource.org/licenses/MIT"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="#abstract">Abstract</a>
+        <a class="navbar-item" href="#gallery">Gallery</a>
+        <a class="navbar-item" href="#bibtex">Citation</a>
+        <a class="navbar-item" href="#technical">Technical Details</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">OSMO: Open-Source Tactile Glove for Human-to-Robot Skill Transfer</h1>
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths" style="margin-top: 2rem; margin-bottom: 2rem;">
+            <img src="photos/fig1_v1.png" alt="OSMO Tactile Glove Overview" style="width: 100%; height: auto;" />
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="publication-authors">
+              <span class="author-block">
+                <a href="https://jessicayin.github.io/">Jessica Yin</a><sup>1</sup>,
+                <a href="https://haozhi.io/">Haozhi Qi</a><sup>1*</sup>,
+                <a href="https://sites.google.com/umich.edu/youngsun-wi/home">Youngsun Wi</a><sup>1*,2</sup>,
+                <a href="https://linkedin.com/in/sayantank">Sayantan Kundu</a><sup>1</sup>,
+                <a href="https://scholar.google.com/citations?user=p6DCMrQAAAAJ&hl=en">Mike Lambeta</a><sup>1</sup>,
+              </span>
+              <br>
+              <span class="author-block">
+                <a href="https://yangwill.github.io/">William Yang</a><sup>3</sup>,
+                <a href="https://changhaowang.github.io/">Changhao Wang</a><sup>1</sup>,
+                <a href="https://scholar.google.com/citations?user=9bt2Z5QAAAAJ&hl=en">Tingfan Wu</a><sup>1</sup>,
+                <a href="https://people.eecs.berkeley.edu/~malik/">Jitendra Malik</a><sup>1,4</sup>,
+                <a href="https://www.tesshellebrekers.com/">Tess Hellebrekers</a><sup>1</sup>
+              </span>
+            </div>
+            <div class="publication-authors">
+              <span class="author-block">
+                <sup>*</sup>Equal contribution
+              </span>
+            </div>
+            <div class="publication-authors">
+              <span class="author-block">
+                <sup>1</sup>Meta FAIR,
+                <sup>2</sup>University of Michigan,
+                <sup>3</sup>University of Pennsylvania,
+                <sup>4</sup>UC Berkeley
+              </span>
+            </div>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- TODO: Add your paper links here -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#" class="external-link button is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/jessicayin/osmo_tactile_glove" class="external-link button is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Abstract Section -->
+  <section class="section" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p class="abstract-text">
+              Human video demonstrations provide abundant training data for learning robot policies, but video alone cannot capture the rich contact signals critical for mastering manipulation. We introduce <strong>OSMO</strong>: the <strong><u>O</u></strong>pen <strong><u>S</u></strong>ource tactile glove for hu<strong><u>M</u></strong>an-to-rob<strong><u>O</u></strong>t skill transfer. The glove features 12 three-axis tactile sensors across the fingertips and palm and is designed to be compatible with state-of-the-art hand-tracking methods for in-the-wild data collection.
+            </p>
+            <p class="abstract-text">
+              We demonstrate that a robot policy trained exclusively on human demonstrations collected with OSMO, <em>without any real robot data</em>, is capable of executing a challenging contact-rich manipulation task. By equipping both the human and the robot with the same glove, OSMO minimizes the visual and tactile embodiment gap, enabling the transfer of continuous shear and normal force feedback while avoiding the need for image inpainting or other vision-based force inference. On a real-world wiping task requiring sustained contact pressure, our tactile-aware policy achieves a 72% success rate, outperforming vision-only baselines by eliminating contact-related failure modes. We release complete hardware designs, firmware, and assembly instructions to support community adoption.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section" id="gallery">
+    <div class="container is-max-desktop">
+      <!-- OSMO Glove Design -->
+      <div class="gallery-subsection">
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 2rem;">OSMO Glove Design</h2>
+        <div class="osmo-gallery-container">
+          <div class="carousel osmo-gallery" id="osmo-gallery">
+            <div class="item">
+              <div class="gallery-slide-content">
+                <div class="gallery-image-wrapper">
+                  <img src="photos/sensor_assembly.png" alt="Magnetic Tactile Sensor Assembly" class="gallery-image" />
+                </div>
+                <div class="gallery-caption">
+                  <h3 class="gallery-caption-title">Magnetic Tactile Sensor Assembly</h3>
+                  <p class="has-text-justified">
+                    When the soft magnetic elastomers are deformed, the magnetometers measure changes in magnetic flux, which can be correlated to applied XYZ forces. We directly use the raw magnetic flux signals (μT) as tactile data.
+                  </p>
+                  <p class="has-text-justified" style="margin-top: 1rem;">
+                    This magnetic sensor assembly includes MuMetal shielding designed to reduce cross-talk and improve signal fidelity.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="gallery-slide-content">
+                <div class="gallery-image-wrapper">
+                  <img src="photos/glove_wiring.png" alt="PCBs: Sensors and MCU Boards" class="gallery-image" />
+                </div>
+                <div class="gallery-caption">
+                  <h3 class="gallery-caption-title">PCBs: Sensors and MCU Boards</h3>
+                  <p class="has-text-justified">
+                    The 12 sensor PCBs communicate with an STM32 microcontroller via I2C, enabling modular addition or removal of sensors. Data streams to a host computer via USB-C, with native Python and ROS2 interfaces supporting time-synchronized sensor packets. The complete glove requires only USB-C for power and data. Alternatively, the microcontroller also accomodates a small LiPo battery and a microSD card slot for wireless operation.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="gallery-slide-content">
+                <div class="gallery-image-wrapper">
+                  <img src="photos/glove_layout.png" alt="Glove Layout" class="gallery-image" />
+                </div>
+                <div class="gallery-caption">
+                  <h3 class="gallery-caption-title">Glove Layout</h3>
+                  <p class="has-text-justified">
+                    The OSMO glove provide tactile coverage on both fingertips and palm while omitting the intermediate and proximal phalanges. This design choice accommodates varying hand sizes by allowing flexible finger lengths while ensuring consistent sensor placement at the primary contact regions. The palm sensors are arranged in three sections aligned with the major planar regions of palm motion. An outer beige glove provides uniform appearance and protects the electronics.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="gallery-slide-content">
+                <div class="gallery-image-wrapper">
+                  <video autoplay loop muted class="gallery-image" style="border-radius: var(--border-radius);">
+                    <source src="videos/hand_quest.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="gallery-caption">
+                  <h3 class="gallery-caption-title">Seamlessly Compatible with In-the-Wild Hand Tracking</h3>
+                  <p class="has-text-justified">
+                    Human demonstrations require hand and wrist poses to provide action labels. Recent advances in vision-based hand estimation with wearable headsets and RGB cameras enable tracking in-the-wild, but these methods are trained primarily on bare human hands. We design the OSMO glove's visual appearance to minimize the distribution shift from bare hand datasets: a low-profile electronics layout and beige-colored fabric.
+
+                    As a result, vision-based hand trackers recognize the OSMO glove as a hand with <strong>no modifications to the hand tracking algorithms.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="gallery-slide-content">
+                <div class="gallery-image-wrapper">
+                  <img src="photos/glove_visual.png" alt="Minimizes Visual Gap" class="gallery-image" />
+                </div>
+                <div class="gallery-caption">
+                  <h3 class="gallery-caption-title">Minimizes Human and Robot Visual Gap</h3>
+                  <p class="has-text-justified" style="margin-top: 1rem;">
+                    To minimize the embodiment gap, we design the OSMO glove with a stretchable base layer and sensor layout that can be worn by both human demonstrators and biomimetic robot hands, such as the Psyonic Ability Hand. A shared glove platform can help minimize the gap in tactile and visual feedback at data collection and deployment time.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="gallery-slide-content">
+                <div class="gallery-caption gallery-caption-fullwidth">
+                  <h3 class="gallery-caption-title">Our Vision</h3>
+                  <p class="has-text-justified">
+                    These design objectives represent our vision for tactile glove hardware to study human-to-robot skill transfer. We present the OSMO glove hardware design to realize these goals while balancing practical tradeoffs in accessibility and ease of fabrication.
+                  </p>
+                  <p class="has-text-justified" style="margin-top: 1rem;">
+                    <strong>1. Unrestrained human dexterity during demonstration collection.</strong> Constraints on dexterity can create practical barriers to the speed and required skill level of collecting data. Recent advances in dexterous robot hand hardware and human-to-robot kinematic retargeting methods can enable direct transfer from human demonstrations to deployable robot policies, removing the need to restrain human dexterity during data collection.
+                  </p>
+                  <p class="has-text-justified" style="margin-top: 1rem;">
+                    <strong>2. Rich normal and shear force sensing.</strong> Human manipulation involves both normal and shear force feedback. Prior wearable tactile sensors have predominantly focused on normal forces, limiting the contact information collected. Magnetic tactile sensors enable measurement of all three force axes in a thin form factor that allows for feel-through haptic feedback to the demonstrator. We equip the glove with 12 taxels on the fingertips and palm, with a sensing range of 0.3 N - 80 N.
+                  </p>
+                  <p class="has-text-justified" style="margin-top: 1rem;">
+                    <strong>3. Full hand tactile coverage.</strong> Contact during dexterous manipulation occurs across the entire hand surface, with the palm playing a critical role in stabilization and grasping. We provide tactile coverage on both fingertips and palm while omitting the intermediate and proximal phalanges. This design choice accommodates varying hand sizes by allowing flexible finger lengths while ensuring consistent sensor placement at the primary contact regions. 
+                  </p>
+                  <p class="has-text-justified" style="margin-top: 1rem;">
+                    <strong>4. Broad compatibility with in-the-wild hand tracking methods.</strong> Human demonstrations require hand and wrist poses to provide action labels. Recent advances in vision-based hand estimation with wearable headsets and RGB cameras enable tracking in-the-wild, but these methods are trained primarily on bare human hands. We design the OSMO glove's visual appearance to minimize the distribution shift from bare hand datasets: a low-profile electronics layout and beige-colored fabric for compatibility with off-the-shelf vision-based trackers. For demonstrations requiring occlusion-robust tracking, the magnetic sensors can be integrated with the Manus Quantum glove without electromagnetic interference, as the OSMO tactile sensors operate at a different frequency.
+                  </p>
+                  <p class="has-text-justified" style="margin-top: 1rem;">
+                    <strong>5. Deployable on both human and robot hands.</strong> Embodiment gaps between demonstration and deployment hardware can make policy transfer more difficult. To minimize this gap, we design the OSMO glove with a stretchable base layer and sensor layout that can be worn by both human demonstrators and biomimetic robot hands, such as the Psyonic Ability Hand. A shared glove platform can help minimize the gap in tactile and visual feedback at data collection and deployment time.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-nav" style="text-align: center; margin-top: 1rem;">
+            <button class="carousel-nav-button" onclick="previousSlide('osmo-gallery')" aria-label="Previous image">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="carousel-indicator" id="osmo-gallery-indicator">1 / 5</span>
+            <button class="carousel-nav-button" onclick="nextSlide('osmo-gallery')" aria-label="Next image">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- In the Wild Hand Tracking -->
+      <div class="gallery-subsection" style="margin-top: 4rem;">
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 2rem;">In-the-Wild Hand Tracking Demos</h2>
+        <div class="columns is-vcentered" style="gap: 2rem;">
+          <div class="column is-one-quarter">
+            <video controls autoplay loop muted class="gallery-video" style="border-radius: var(--border-radius);">
+              <source src="videos/hand_tracking.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="column is-three-quarters">
+            <p class="has-text-justified">
+              The OSMO tactile glove is designed to be compatible with off-the-shelf hand-tracking devices for in-the-wild data collection. OSMO is worn on the right hand, and the device's native hand-tracking estimates are overlaid. The glove works seamlessly with:  
+              <ul>
+                <li>Aria Gen 2</li>
+                <li>Quest 3</li>
+                <li>Apple Vision Pro</li>
+                <li>RGB videos</li>
+                <li>Manus Quantum Glove</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Human to Robot Policy Rollouts -->
+      <div class="gallery-subsection" style="margin-top: 4rem;">
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 2rem;">Human to Robot Policy Rollouts</h2>
+        <div class="columns is-vcentered" style="gap: 2rem;">
+          <div class="column is-two-fifths">
+            <video controls autoplay loop muted class="gallery-video" style="border-radius: var(--border-radius); box-shadow: var(--shadow-md);">
+              <source src="videos/policy_rollouts.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="column is-three-fifths">
+            <p class="has-text-justified">
+              We demonstrate that a robot policy trained exclusively on human demonstrations collected with OSMO, without any real robot data, is capable of executing a challenging contact-rich manipulation task. On a real-world wiping task requiring sustained contact pressure, our tactile-aware policy achieves a 72% success rate, outperforming vision-only baselines by eliminating contact-related failure modes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crosstalk Mitigation for Dense Sensor Layout -->
+      <div class="gallery-subsection" style="margin-top: 4rem;">
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 2rem;">Crosstalk Mitigation for Dense Sensor Layout</h2>
+        <div class="columns is-vcentered" style="gap: 2rem;">
+          <div class="column is-two-fifths">
+            <video controls autoplay loop muted class="gallery-video" style="border-radius: var(--border-radius);">
+              <source src="videos/crosstalk_mitigation.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="column is-three-fifths">
+            <p class="has-text-justified">
+              Scaling from single sensor implementations to 12 closely-spaced magnetic sensors introduces significant crosstalk. We introduce two new techniques to our sensor design for crosstalk mitigation: 1) MuMetal shielding integrated into the sensor architecture to attenuate external magnetic fields, and 2) a dual magnetometer differential sensing layout per taxel to reduce common-mode noise. Our combined approach reduces average noise by 57% compared to a single magnetometer configuration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX Section -->
+  <section class="section" id="bibtex">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">Citation</h2>
+          <div class="bibtex-container">
+            <button class="button is-small copy-bibtex" onclick="copyBibtex()" title="Copy BibTeX">
+              <span class="icon">
+                <i class="fas fa-copy"></i>
+              </span>
+              <span>Copy</span>
+            </button>
+            <pre class="bibtex" id="bibtex-content"><!-- TODO: Add your BibTeX citation here -->
+@article{yin2025osmo,
+    title={OSMO: Open-Source Tactile Glove for Human-to-Robot Skill Transfer},
+    author={Yin, Jessica and Qi, Haozhi and Wi, Youngsun and Kundu, Sayantan and Lambeta, Mike and Yang, William and Wang, Changhao and Wu, Tingfan and Malik, Jitendra and Hellebrekers, Tess},
+    journal={arxiv},
+    year={2025}
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Details Section -->
+  <section class="section" id="technical">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">Technical Details</h2>
+          <p class="has-text-centered" style="margin-bottom: 2rem;">
+            For researchers and developers interested in reproducing or extending this work, detailed technical information is available below:
+          </p>
+          
+          <div class="tech-links">
+            <button class="button is-medium tech-link" onclick="toggleSection('source-code')">
+              <span class="icon">
+                <i class="fas fa-code"></i>
+              </span>
+              <span> Source Code</span>
+            </button>
+            <button class="button is-medium tech-link" onclick="toggleSection('pcb-files')">
+              <span class="icon">
+                <i class="fas fa-microchip"></i>
+              </span>
+              <span> PCB Files</span>
+            </button>
+            <button class="button is-medium tech-link" onclick="toggleSection('bom')">
+              <span class="icon">
+                <i class="fas fa-list"></i>
+              </span>
+              <span> Bill of Materials</span>
+            </button>
+            <button class="button is-medium tech-link" onclick="toggleSection('assembly')">
+              <span class="icon">
+                <i class="fas fa-tools"></i>
+              </span>
+              <span> Assembly Instructions</span>
+            </button>
+          </div>
+
+          <div id="source-code" class="tech-section">
+            <h3 class="title is-4">Source Code</h3>
+            <p>All source code for the Osmo Tactile Glove is available in the repository:</p>
+            <ul>
+              <li><a href="source/firmware/"><i class="fas fa-folder"></i> Firmware</a> - Embedded software for the microcontroller</li>
+              <li><a href="source/software/"><i class="fas fa-folder"></i> Software</a> - PC-side software and drivers</li>
+              <li><a href="source/calibration/"><i class="fas fa-folder"></i> Calibration Tools</a> - Sensor calibration utilities</li>
+            </ul>
+          </div>
+
+          <div id="pcb-files" class="tech-section">
+            <h3 class="title is-4">PCB Files</h3>
+            <p>Printed Circuit Board design files (Gerber, KiCad, etc.):</p>
+            <ul>
+              <li><a href="pcb/main-board/"><i class="fas fa-folder"></i> Main Board</a> - Primary control board</li>
+              <li><a href="pcb/sensor-board/"><i class="fas fa-folder"></i> Sensor Board</a> - Tactile sensor interface board</li>
+              <li><a href="pcb/schematics/"><i class="fas fa-folder"></i> Schematics</a> - Circuit diagrams</li>
+            </ul>
+          </div>
+
+          <div id="bom" class="tech-section">
+            <h3 class="title is-4">Bill of Materials</h3>
+            <p>Complete list of components and suppliers:</p>
+            <ul>
+              <li><a href="bom/bom.csv"><i class="fas fa-file-csv"></i> BOM (CSV)</a> - Spreadsheet format</li>
+              <li><a href="bom/bom.pdf"><i class="fas fa-file-pdf"></i> BOM (PDF)</a> - Printable format</li>
+              <li><a href="bom/suppliers.md"><i class="fas fa-file-alt"></i> Supplier Information</a> - Recommended vendors</li>
+            </ul>
+          </div>
+
+          <div id="assembly" class="tech-section">
+            <h3 class="title is-4">Assembly Instructions</h3>
+            <p>Step-by-step guide to building the Osmo Tactile Glove:</p>
+            <ul>
+              <li><a href="assembly/instructions.pdf"><i class="fas fa-file-pdf"></i> Assembly Manual (PDF)</a></li>
+              <li><a href="assembly/step-by-step.html"><i class="fas fa-file-code"></i> Step-by-Step Guide</a></li>
+              <li><a href="assembly/troubleshooting.md"><i class="fas fa-file-alt"></i> Troubleshooting</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          Webpage source code modified from <a href ="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a> and <a href="Nerfies">Nerfies</a> with the help of Claude and Cursor. 
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+  <script src="static/js/index.js"></script>
+</body>
+</html>
