@@ -166,7 +166,7 @@
           </div>
         </div>
         <a class="navbar-item" href="#bibtex">BibTeX</a>
-        <a class="navbar-item" href="#technical">Technical Details</a>
+        <a class="navbar-item" href="#technical">Hardware Guides</a>
       </div>
     </div>
   </nav>
@@ -487,13 +487,23 @@
           <div class="columns is-vcentered" style="gap: 2rem;">
             <div class="column is-two-fifths">
               <video controls autoplay loop muted class="gallery-video" style="border-radius: var(--border-radius);">
-                <source src="videos/glove_robot_rollouts.mp4" type="video/mp4">
+                <source src="videos/glove_policy_rollouts.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
             <div class="column is-three-fifths">
               <p class="has-text-justified">
-                We equip the robot with the same OSMO glove and find that we can directly roll out policies.
+                We equip the robot with the same OSMO glove and rollout the policy learned from human demonstrations. 
+                </p>
+                <p class="has-text-justified">
+                The OSMO tactile glove provides two key advantages that typically require substantial preprocessing. 
+                </p>
+                <p class="has-text-justified">
+                First, using the same glove on both the human and the robot greatly reduces the visual domain gap, enabling the use of an off-the-shelf vision encoder without the image editing, inpainting, or hand-masking steps commonly required to reconcile differences between human and robot embodiments. 
+                </p>
+              <p class="has-text-justified">
+                Second, the glove enables rich, continuous force transfer directly from human to robot: the robot policy utilizes continuous shear and normal tactile signals at deployment time, despite being trained entirely on human tactile data. 
+              </p>
               </p>
             </div>
           </div>
@@ -511,7 +521,7 @@
             </div>
             <div class="column is-three-fifths">
               <p class="has-text-justified">
-                Our policy is more successful because we can eliminate contact-related failures.
+              Policies without tactile feedback in training and deployment frequently exhibit contact-related failures: inconsistent or insufficient applied pressure on the sponge or losing grasp of the sponge. The elimination of contact-related failures and improved success rate show that the OSMO tactile glove feedback is beneficial for this contact-rich task.
               </p>
             </div>
           </div>
@@ -571,12 +581,12 @@
     </div>
   </section>
 
-  <!-- Technical Details Section -->
+  <!-- Hardware Guides Section -->
   <section class="section" id="technical">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3 has-text-centered">Technical Details</h2>
+          <h2 class="title is-3 has-text-centered">Hardware Guides</h2>
           <p class="has-text-centered" style="margin-bottom: 2rem;">
             For researchers and developers interested in reproducing or extending this work, detailed technical information is available below:
           </p>
