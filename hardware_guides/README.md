@@ -12,3 +12,6 @@ Please review the files in the following order:
 4. `glove_assembly.md` - How to assemble the glove
 5. `troubleshooting.md` - Common issues and solutions
 
+## TODO
+- add real photos to sensor_assembly.md and fix image formatting
+- add proper links to the firmware and glove assembly references in sensor_assembly.md
