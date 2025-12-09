@@ -27,7 +27,7 @@ Note: Please also be prepared to flash the firmware (flash_firmware.md), which h
 ### 1. Solder the boards together.
 Cut the tinsel wire to the total length needed per finger and mark where each sensor should be located on the wire. These are the lengths used in the paper, but feel free to adjust for different sized hands or gloves. If using solder flux, apply to the board and tinsel wire prior to soldering. Solder the sensor boards in series according to the wiring diagram below. 
 
-    TIP: Note down somewhere which wire color corresponds to SCL, SDA, 3V, GND for future troubleshooting, and keep these color correspondences consistent both within the same glove build and across future glove builds.
+TIP: Note down somewhere which wire color corresponds to SCL, SDA, 3V, GND for future troubleshooting, and keep these color correspondences consistent both within the same glove build and across future glove builds.
 
 <div style="display: flex; gap: 1rem; align-items: center;">
   <img src="../photos/glove_wiring_tutorial.png" alt="Glove Wiring Diagram" style="flex: 1; max-width: 45%; height: auto;">
@@ -55,7 +55,7 @@ The magnetic elastomer fabrication follows a similar procedure to [ReSkin](https
 ### 6. Assemble magnetic tactile sensors.
 First apply a generous, even layer of Silpoxy on the bottom (no chips) side of the PCB and gently press the magnetic elastomer patch into place. Then, apply another generous, even layer of Silpoxy on the MuMetal shield. Align the shield with the board and press into place. Let cure at room temperature (roughly 20-30 minutes).
 
-     Tip: The layers of Silpoxy need to be thick enough to electrically insulate the sensor board from the magnetic elastomer and MuMetal shield, particularly around the solder joints. The Silpoxy layer serves a dual purpose: holding the sensor stack together AND preventing electrical shorts.
+NOTE: The layers of Silpoxy need to be thick enough to electrically insulate the sensor board from the magnetic elastomer and MuMetal shield, particularly around the solder joints. The Silpoxy layer serves a dual purpose: holding the sensor stack together AND preventing electrical shorts.
 
 
 <div style="display: flex; gap: 1rem; align-items: center;">

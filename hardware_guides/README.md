@@ -1,4 +1,4 @@
-# Assembly Instructions
+# README
 
 This folder contains step-by-step instructions for assembling the OSMO glove hardware.
 
