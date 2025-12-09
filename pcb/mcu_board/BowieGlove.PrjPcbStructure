@@ -1,0 +1,8 @@
+Record=TopLevelDocument|FileName=BOWIE_CONNECTORS.SchDoc|SheetNumber=1
+Record=NoMainPathDocument|SourceDocument=BOWIE_CONNECTORS.SchDoc|FileName=BOWIE_FINGERS.SchDoc|SheetNumber=3
+Record=NoMainPathDocument|SourceDocument=BOWIE_CONNECTORS.SchDoc|FileName=BOWIE_IMU.SchDoc|SheetNumber=5
+Record=NoMainPathDocument|SourceDocument=BOWIE_CONNECTORS.SchDoc|FileName=BOWIE_MCU.SchDoc|SheetNumber=4
+Record=NoMainPathDocument|SourceDocument=BOWIE_CONNECTORS.SchDoc|FileName=BOWIE_POWER.SchDoc|SheetNumber=7
+Record=NoMainPathDocument|SourceDocument=BOWIE_CONNECTORS.SchDoc|FileName=POWER_LIPO.SchDoc|SheetNumber=8
+Record=NoMainPathDocument|SourceDocument=BOWIE_CONNECTORS.SchDoc|FileName=TETHER_CONNECTOR.SchDoc|SheetNumber=2
+Record=NoMainPathDocument|SourceDocument=BOWIE_CONNECTORS.SchDoc|FileName=USER_IO.SchDoc|SheetNumber=6
