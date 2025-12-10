@@ -4,7 +4,7 @@ This guide covers how to assemble the glove electronics. We begin by soldering t
 
 ## Required Supplies
 ### Glove Components
-- Tinsel wire
+- Enameled magnet wire/ tinsel wire
 - 12 x sensor boards
 - 1 x MCU board
 - MuMetal sheet
@@ -19,7 +19,7 @@ This guide covers how to assemble the glove electronics. We begin by soldering t
 - Chipquik flux
 - Multimeter
 - Pulse magnetizer
-- Cotton buds / stir sticks
+- Cotton tipped applicators / stir sticks
 
 Note: Please also be prepared to flash the firmware (flash_firmware.md), which happens at step 3.
 ## Instructions
@@ -29,10 +29,9 @@ Cut the tinsel wire to the total length needed per finger and mark where each se
 
 TIP: Note down somewhere which wire color corresponds to SCL, SDA, 3V, GND for future troubleshooting, and keep these color correspondences consistent both within the same glove build and across future glove builds.
 
-<div style="display: flex; gap: 1rem; align-items: center;">
-  <img src="../photos/glove_wiring_tutorial.png" alt="Glove Wiring Diagram" style="flex: 1; max-width: 45%; height: auto;">
-  <img src="../photos/tinsel_wire.png" alt="Tinsel Wire Diagram" style="flex: 1; max-width: 35%; height: auto;">
-</div>
+| Glove Wiring | Tinsel Wire |
+|---|---|
+| ![Glove Wiring Diagram](../photos/glove_wiring_tutorial.png) | ![Tinsel Wire Diagram](../photos/tinsel_wire.png) |
 
 
 ### 2. Verify soldering with multimeter.
@@ -57,17 +56,14 @@ First apply a generous, even layer of Silpoxy on the bottom (no chips) side of t
 
 NOTE: The layers of Silpoxy need to be thick enough to electrically insulate the sensor board from the magnetic elastomer and MuMetal shield, particularly around the solder joints. The Silpoxy layer serves a dual purpose: holding the sensor stack together AND preventing electrical shorts.
 
-
-<div style="display: flex; gap: 1rem; align-items: center;">
-  <img src="../photos/sensor_assembly_tutorial.png" alt="Glove Wiring Diagram" style="flex: 1; max-width: 45%; height: auto;">
-</div>
+![Sensor Assembly Tutorial](../photos/sensor_assembly_tutorial.png)
 
 
 ### 6. This guide is complete! Please move on to the next tutorial for glove assembly.
 Please see glove_assembly.md.
 
 ## Alternate Sensor Layouts
-TODO by 12/20
+TODO
 
 
 
