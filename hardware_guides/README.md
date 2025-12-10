@@ -13,5 +13,6 @@ Please review the files in the following order:
 5. `troubleshooting.md` - Common issues and solutions
 
 ## TODO
-- add real photos to sensor_assembly.md and fix image formatting
-- add proper links to the firmware and glove assembly references in sensor_assembly.md
+- add real photos to sensor_assembly.md
+- add detailed wire routing diagram
+- add better links to other guide references
