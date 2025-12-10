@@ -51,9 +51,11 @@ Create two separate workspaces, the projects will override each other. Open your
 Open the main.c under Core/src/main.c. Select the hammer icon at the top toolbar to build this project. 
 
 ### 5. Flash the firmware to the MCU board. 
-Plug in the MCU board with the USB C - USB A cable to a power source, such as the computer. The three LEDs on the board should light up briefly. Firmly press the TagConnect pins into the MCU board. While maintaining contact and firm pressure, click the green arrow in the IDE to flash the binary to the MCU board.
+Plug in the MCU board with the USB C - USB A cable to a power source, such as the computer. The three LEDs on the board should light up briefly. 
 
-| Pins Location on MCU | Flashing with TagConnect Cable |
+Firmly press the TagConnect pins into the MCU board. While maintaining contact and firm pressure, click the green arrow in the IDE to flash the binary to the MCU board.
+
+| Pins Location on MCU | Connecting the TagConnect Cable |
 |---|---|
 |![Pins Location](../photos/pins_location.png)|![Flashing](../photos/pin_connector.jpeg)
 
