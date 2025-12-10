@@ -1,0 +1,3 @@
+../Core/Src/sdio.c:31:6:MX_SDIO_SD_Init	3
+../Core/Src/sdio.c:62:6:HAL_SD_MspInit	2
+../Core/Src/sdio.c:112:6:HAL_SD_MspDeInit	2

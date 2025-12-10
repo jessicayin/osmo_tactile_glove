@@ -1,0 +1,4 @@
+../Drivers/bhy2/bhy2_swim.c:64:8:bhy2_swim_set_config	32	static
+../Drivers/bhy2/bhy2_swim.c:96:8:bhy2_swim_get_config	40	static
+../Drivers/bhy2/bhy2_swim.c:135:8:bhy2_swim_get_version	48	static
+../Drivers/bhy2/bhy2_swim.c:183:8:bhy2_swim_parse_data	24	static

@@ -1,0 +1,80 @@
+<mujoco model="psyonic franka right scene">
+  <include file="./psyonic_right_franka.xml"/>
+
+  <statistic center="0 0 0.1" extent="0.6"/>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="120" elevation="-20"/>
+  </visual>
+
+  <!-- <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+  </asset> -->
+
+  <worldbody>
+  <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+    <!-- <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/> -->
+
+  <!-- <body name="index_mcp_target" pos="0 0 0" quat="0 1 0 0" mocap="true">
+      <geom type="sphere" size="0.01" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+      <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
+  </body> -->
+  <body name="index_fingertip_target" pos = "0 0 0" quat="0 1 0 0" mocap="true">
+      <geom type="sphere" size="0.005" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+      <site type="sphere" size="0.005" rgba="0 0 0 1" group="1"/>
+  </body>
+   <!-- <body name="middle_mcp_target" pos="0 0 0" quat="0 1 0 0" mocap="true">
+      <geom type="sphere" size="0.01" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+      <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
+  </body> -->
+    <body name="middle_fingertip_target" pos = "0 0 0" quat="0 1 0 0" mocap="true">
+        <geom type="sphere" size="0.005" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+        <site type="sphere" size="0.005" rgba="0 0 0 1" group="1"/>
+    </body>
+   <!-- <body name="ring_mcp_target" pos="0 0 0" quat="0 1 0 0" mocap="true">
+      <geom type="sphere" size="0.01" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+      <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
+  </body> -->
+    <body name="ring_fingertip_target" pos = "0 0 0" quat="0 1 0 0" mocap="true">
+        <geom type="sphere" size="0.005" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+        <site type="sphere" size="0.005" rgba="0 0 0 1" group="1"/>
+    </body>
+   <!-- <body name="pinky_mcp_target" pos="0 0 0" quat="0 1 0 0" mocap="true">
+      <geom type="sphere" size="0.01" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+      <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
+    </body> -->
+    <body name="pinky_fingertip_target" pos = "0 0 0" quat="0 1 0 0" mocap="true">
+        <geom type="sphere" size="0.005" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+        <site type="sphere" size="0.005" rgba="0 0 0 1" group="1"/>
+    </body>
+   <!-- <body name="thumb_flexor_target" pos="0 0 0" quat="0 1 0 0" mocap="true">
+      <geom type="sphere" size="0.01" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+      <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
+  </body>
+     <body name="thumb_rotator_target" pos="0 0 0" quat="0 1 0 0" mocap="true">
+      <geom type="sphere" size="0.01" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+      <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
+  </body> -->
+    <body name="thumb_fingertip_target" pos = "0 0 0" quat="0 1 0 0" mocap="true">
+        <geom type="sphere" size="0.005" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+        <site type="sphere" size="0.005" rgba="0 0 0 1" group="1"/>
+   </body>
+
+      <!-- <body name="wrist_target" pos = "0 0 0" quat="0 1 0 0" mocap="true">
+      <geom type="sphere" size="0.005" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+      <site type="sphere" size="0.005" rgba="0 0 0 1" group="1"/>
+  </body> -->
+
+  <!-- <body name="toy_object" pos = "0.47 -0.25 0.2" quat="0 1 0 0" mocap="false">
+  <geom type="sphere" size = "0.05" contype="0" conaffinity="0" rgba="0 1 0 0.5"/>
+  <site type="sphere" size="0.005" rgba="0 0 0 1" group="1"/>
+  </body> -->
+
+  </worldbody>
+
+</mujoco>

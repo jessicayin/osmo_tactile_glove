@@ -1,0 +1,3 @@
+../Core/Src/usb_otg.c:31:6:MX_USB_OTG_HS_PCD_Init	2
+../Core/Src/usb_otg.c:62:6:HAL_PCD_MspInit	2
+../Core/Src/usb_otg.c:96:6:HAL_PCD_MspDeInit	2

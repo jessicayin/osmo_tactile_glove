@@ -1,0 +1,9 @@
+# Request
+int16 hand_id
+string status
+int16 gesture_no
+
+---
+
+# Response
+bool gesture_nograb

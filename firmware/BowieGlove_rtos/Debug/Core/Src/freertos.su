@@ -1,0 +1,10 @@
+C:/Users/kundusayantan/Documents/GitHub/GUM/hardware/glove/fw/BowieGlove_rtos/tinyusb/src/class/cdc/cdc_device.h:168:20:tud_cdc_connected	8	static
+../Core/Src/freertos.c:114:6:MX_FREERTOS_Init	8	static
+../Core/Src/freertos.c:159:6:StartUSBTask	16	static
+../Core/Src/freertos.c:178:6:StartCDCTask	88	static
+../Core/Src/freertos.c:206:6:StartBowieTask	16	static
+../Core/Src/freertos.c:229:6:usb_handle_connection_change	16	static
+../Core/Src/freertos.c:239:6:tud_mount_cb	8	static
+../Core/Src/freertos.c:244:6:tud_umount_cb	8	static
+../Core/Src/freertos.c:249:6:tud_suspend_cb	16	static
+../Core/Src/freertos.c:253:6:tud_resume_cb	8	static

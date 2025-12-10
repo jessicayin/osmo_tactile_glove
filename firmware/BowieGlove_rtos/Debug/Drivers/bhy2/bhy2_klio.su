@@ -1,0 +1,10 @@
+../Drivers/bhy2/bhy2_klio.c:52:8:bhy2_klio_read_pattern	304	static
+../Drivers/bhy2/bhy2_klio.c:86:8:bhy2_klio_read_reset_driver_status	32	static
+../Drivers/bhy2/bhy2_klio.c:114:8:bhy2_klio_write_pattern	288	static
+../Drivers/bhy2/bhy2_klio.c:131:8:bhy2_klio_set_pattern_states	64	dynamic
+../Drivers/bhy2/bhy2_klio.c:155:8:bhy2_klio_set_state	24	static
+../Drivers/bhy2/bhy2_klio.c:177:8:bhy2_klio_get_state	40	static
+../Drivers/bhy2/bhy2_klio.c:203:8:bhy2_klio_similarity_score	560	static
+../Drivers/bhy2/bhy2_klio.c:262:8:bhy2_klio_similarity_score_multiple	320	static
+../Drivers/bhy2/bhy2_klio.c:317:8:bhy2_klio_set_parameter	280	static
+../Drivers/bhy2/bhy2_klio.c:336:8:bhy2_klio_get_parameter	312	static

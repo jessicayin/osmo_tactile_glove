@@ -1,0 +1,4 @@
+../tinyusb/src/class/dfu/dfu_rt_device.c:47:6:dfu_rtd_init	4	static
+../tinyusb/src/class/dfu/dfu_rt_device.c:51:6:dfu_rtd_reset	16	static
+../tinyusb/src/class/dfu/dfu_rt_device.c:56:10:dfu_rtd_open	48	static
+../tinyusb/src/class/dfu/dfu_rt_device.c:80:6:dfu_rtd_control_xfer_cb	40	static

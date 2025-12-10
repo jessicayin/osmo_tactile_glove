@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package bowie;
+
+enum Finger
+{
+    none = 0;
+	pinky = 1;
+	ring = 2;
+	middle = 3;
+	index = 4;
+	thumb = 5;
+}
+
+message Mag
+{
+    int32 seconds = 1;
+    int32 nanoseconds = 2;
+	float x = 3;
+	float y = 4;
+	float z = 5;
+}
+
+message Quat
+{
+    int32 seconds = 1;
+    int32 nanoseconds = 2;
+	float x = 3;
+	float y = 4;
+	float z = 5;
+    float w = 6;
+    float accuracy = 7;
+}
+
+message Data
+{
+	int32 index = 1;
+	Finger finger = 2;
+	int32 link = 3;
+	int32 sensor_id = 4;
+	Mag mag = 5;
+    Quat quat = 6;
+}

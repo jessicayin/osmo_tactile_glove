@@ -1,0 +1,7 @@
+../Drivers/bhy2/bhy2_parse.c:42:6:bhy2_parse_temperature_celsius	1
+../Drivers/bhy2/bhy2_parse.c:50:6:bhy2_parse_humidity	1
+../Drivers/bhy2/bhy2_parse.c:57:6:bhy2_parse_pressure	1
+../Drivers/bhy2/bhy2_parse.c:65:6:bhy2_parse_altitude	1
+../Drivers/bhy2/bhy2_parse.c:70:6:bhy2_parse_quaternion	1
+../Drivers/bhy2/bhy2_parse.c:79:6:bhy2_parse_xyz	1
+../Drivers/bhy2/bhy2_parse.c:86:6:bhy2_parse_orientation	1

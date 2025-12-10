@@ -1,0 +1,14 @@
+../Drivers/bhy2/bhy2_head_tracker.c:56:6:bhy2_head_tracker_quat_parsing	3
+../Drivers/bhy2/bhy2_head_tracker.c:75:6:bhy2_head_tracker_eul_parsing	3
+../Drivers/bhy2/bhy2_head_tracker.c:92:8:bhy2_head_tracker_trigger_hmc_calibration	2
+../Drivers/bhy2/bhy2_head_tracker.c:113:8:bhy2_head_tracker_set_hmc_configuration	2
+../Drivers/bhy2/bhy2_head_tracker.c:134:8:bhy2_head_tracker_get_hmc_configuration	2
+../Drivers/bhy2/bhy2_head_tracker.c:157:8:bhy2_head_tracker_set_default_hmc_configuration	2
+../Drivers/bhy2/bhy2_head_tracker.c:178:8:bhy2_head_tracker_get_hmc_version	2
+../Drivers/bhy2/bhy2_head_tracker.c:201:8:bhy2_head_tracker_set_hmc_quat_calib_corr_config	2
+../Drivers/bhy2/bhy2_head_tracker.c:222:8:bhy2_head_tracker_get_hmc_quat_calib_corr_config	2
+../Drivers/bhy2/bhy2_head_tracker.c:245:8:bhy2_head_tracker_set_quat_initial_head_correction	2
+../Drivers/bhy2/bhy2_head_tracker.c:266:8:bhy2_head_tracker_get_quat_initial_head_correction	2
+../Drivers/bhy2/bhy2_head_tracker.c:289:8:bhy2_head_tracker_get_ho_version	2
+../Drivers/bhy2/bhy2_head_tracker.c:312:8:bhy2_head_tracker_set_eul_initial_head_correction	2
+../Drivers/bhy2/bhy2_head_tracker.c:333:8:bhy2_head_tracker_get_eul_initial_head_correction	2

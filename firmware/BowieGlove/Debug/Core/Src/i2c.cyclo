@@ -1,0 +1,4 @@
+../Core/Src/i2c.c:31:6:MX_I2C1_Init	3
+../Core/Src/i2c.c:63:6:MX_I2C2_Init	2
+../Core/Src/i2c.c:92:6:HAL_I2C_MspInit	3
+../Core/Src/i2c.c:164:6:HAL_I2C_MspDeInit	3

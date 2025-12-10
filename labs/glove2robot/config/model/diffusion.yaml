@@ -1,0 +1,93 @@
+wandb:
+  project: diffusion
+  experiment_name: ~ # set to track the run names
+  entity: tessh
+  save_dir: ${hydra:runtime.output_dir}
+  id: ~ # ${hydra:job.id}_${experiment_name} # Pass correct id to resume a run
+  tags: ["diffusion", "test"]
+  group: ~ # ${experiment_name}
+  notes: ~
+
+device: 'cuda:0'
+
+dataset: # example config for real data with tactile and image
+  repo_id: "mug_pickplace"
+  root: "/home/tessh/data/hf_datasets"
+  n_obs_steps: 3
+  n_action_steps: 8
+  # num steps must match length of delta_timestamps
+  delta_timestamps:
+    observation.image: [-0.2, -0.1, 0.0]
+    observation.state: [-0.2, -0.1, 0.0]
+    observation.tactile: [-0.2, -0.1, 0.0]
+    action: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7]
+  input_shapes: # must match data in the root/repo_id
+    observation.state: [23]
+    observation.image: [3, 480, 640]
+    observation.tactile: [13]
+  output_shapes: 
+    action: [23]
+  
+# dataset: # example config for real data with only image
+#   repo_id: "real_example"
+#   root: "/home/tessh/gum_ws/src/GUM/gum/labs/h2r/"
+#   n_obs_steps: 2
+#   n_action_steps: 8
+#   # num steps must match length of delta_timestamps
+#   delta_timestamps:
+#     observation.image: [-0.1, 0.0]
+#     observation.state: [-0.1, 0.0]
+#     action: [0.0, 0.1]
+#   input_shapes: # must match data in the root/repo_id
+#     observation.state: [3]
+#     observation.image: [3, 480, 640]
+#   output_shapes: 
+#     action: [23]
+
+policy:
+  # _target_: gum.third_party.lerobot.common.policies.diffusion.configuration_diffusion.DiffusionConfig
+  _target_: gum.labs.h2r.utils.visuotactile_configuration_diffusion.VisuoTactileDiffusionConfig
+  horizon: 8
+  n_obs_steps: ${dataset.n_obs_steps}
+  n_action_steps: ${dataset.n_action_steps}
+  input_shapes: ${dataset.input_shapes}
+  output_shapes: ${dataset.output_shapes}
+  input_normalization_modes: 
+    observation.state: "min_max"
+    observation.tactile: "min_max"
+  output_normalization_modes: 
+    action: "min_max"
+  vision_backbone: resnet18
+  pretrained_backbone_weights: null # ex: models.ResNet18_Weights.DEFAULT
+  crop_shape: [84, 84] # null or (H, W)
+  crop_is_random: false
+  use_group_norm: false
+  spatial_softmax_num_keypoints: 32
+  use_separate_rgb_encoder_per_camera: false
+  kernel_size: 5
+  n_groups: 8
+  diffusion_step_embed_dim: 128
+  use_film_scale_modulation: True
+  noise_scheduler_type: "DDPM" # options are ["DDPM", "DDIM"].
+  num_train_timesteps: 100
+  beta_schedule: "squaredcos_cap_v2"
+  beta_start: 0.0001
+  beta_end: 0.02
+  prediction_type: "epsilon"  # options are "epsilon" or "sample". 
+  clip_sample: True
+  clip_sample_range: 1.0
+  num_inference_steps: 10
+  do_mask_loss_for_padding: False
+
+train:
+  training_steps: 5000
+  device: ${device}
+  log_freq: 200
+  # checkpoint_dir: 'outputs/train/${dataset.repo_id}'
+  checkpoint_dir: '/home/tessh/data/diffusion/${dataset.repo_id}'
+
+eval:
+  device: '${device}'
+  pretrained_policy_path: '/home/tessh/data/diffusion/${dataset.repo_id}'
+  # pretrained_policy_path: 'outputs/train/tactile_test'
+  num_inference_steps: 10

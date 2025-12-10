@@ -1,0 +1,7 @@
+../Core/Src/glove/bhi360.c:20:8:bhi360_init	40	static
+../Core/Src/glove/bhi360.c:30:8:upload_firmware_partly	40	static
+../Core/Src/glove/bhi360.c:62:8:bhi360_upload_firmware	24	static
+../Core/Src/glove/bhi360.c:106:6:parse_quaternion	128	static
+../Core/Src/glove/bhi360.c:141:6:parse_magnetometer	112	static
+../Core/Src/glove/bhi360.c:184:6:parse_magnetometer_meta	112	static
+../Core/Src/glove/bhi360.c:210:6:parse_meta_event	24	static

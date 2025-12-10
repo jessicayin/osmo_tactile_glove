@@ -1,0 +1,8 @@
+C:/Users/kundusayantan/Documents/GitHub/GUM/hardware/glove/fw/BowieGlove_rtos/tinyusb/src/class/cdc/cdc_device.h:218:24:tud_cdc_write	16	static
+../Core/Src/main.c:78:5:main	8	static
+../Core/Src/main.c:148:6:SystemClock_Config	88	static
+../Core/Src/main.c:201:6:PeriphCommonClock_Config	104	static
+../Core/Src/main.c:222:5:__io_putchar	24	static
+../Core/Src/main.c:229:5:_write	32	static
+../Core/Src/main.c:247:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/main.c:263:6:Error_Handler	4	static,ignoring_inline_asm

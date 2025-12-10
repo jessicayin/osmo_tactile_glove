@@ -1,0 +1,119 @@
+defaults:
+  - _self_
+  - override hydra/hydra_logging: disabled  
+  - override hydra/job_logging: disabled  
+
+# Data source configuration
+src_data_type: sync # options are: [async, sync, osmo]
+
+# Visual processing configuration
+bb_model: sam # options are: [sam, vit] - hand detection model
+allow_detection_fallback: true  # Allow fallback to ViT if SAM fails to initialize
+
+# GPU and performance configuration
+use_multi_gpu: False  # Enable multi-GPU processing if available
+batch_size_multiplier: 2  # Multiply batch size when using multi-GPU
+max_workers: 8  # Maximum number of DataLoader workers (reduced to avoid tokenizer conflicts)
+
+# Savitzky-Golay filter configuration
+window_length: 50  # General window length for filtering
+wrist_z_window_length: 25  # Separate window size for wrist Z translation
+polyorder: 3  # Polynomial order for Savitzky-Golay filter
+
+# Stereo processing optimization
+use_cropped_stereo: true  # Enable cropped stereo processing for faster inference
+crop_padding: 100  # Padding around hand bounding box for cropping (pixels)
+
+# Depth alignment configuration
+depth_alignment_method: "simplified"  # Options: "simplified", "complex", "disabled"
+# simplified: Direct fs_depth lookup (recommended - faster and simpler)
+# complex: Full coordinate transformation between RGB and IR frames
+# disabled: No depth alignment, use original HaMeR predictions
+
+#Trim videos to edit out unnecessary frames
+start_index: 38  # Start processing from this frame index
+end_index: -50  # End processing at this frame index (None means process all frames
+# start_index: 25
+# end_index: -1
+
+camera_calibration: "PATH_TO_CAMERA_CALIBRATION" # as (4,4) rigid transform matrix saved to a .npy (numpy array)
+# camera_calibration: "/home/gumdev/human2robot/calibration_data/cam_to_base_sea.npy"
+
+# Camera calibration constants
+camera:
+  # RealSense Color Camera Intrinsics (1280x720)
+  # color_intrinsic: #redmond 
+  #   - [930.262145996094, 0.0, 642.705749511719]
+  #   - [0.0, 930.824462890625, 349.551055908203]
+  #   - [0.0, 0.0, 1.0]
+  
+  color_intrinsic:
+      - [928.12255859375, 0.0, 656.736328125]
+      - [0, 928.430541992188, 357.717651367188]
+      - [0, 0, 1]
+
+  # RealSense Depth Camera Intrinsics (1280x720)
+  depth_intrinsic:
+    - [637.500366210938, 0.0, 634.756591796875]
+    - [0.0, 637.500366210938, 361.417694091797]
+    - [0.0, 0.0, 1.0]
+  
+  # Stereo camera extrinsics (Color to Infrared 1) [x, y, z, qx, qy, qz, qw]
+  # extrinsics: #redmond
+  #   - -0.0146775310859084
+  #   - -0.000117228250019252
+  #   - -0.000381319696316496
+  #   - -0.0005306
+  #   - -0.0045661
+  #   - -0.000743
+  #   - 0.9999892
+
+  extrinsics: #fremont (Color to Infrared 1)
+      - -0.0146518908441067
+      - -0.000382299040211365
+      - -0.000635038944892585
+      - 0.000528
+      - -0.0025235
+      - -0.0061821
+      - 0.9999776 
+  
+  # World to camera transform vector [x, y, z, qx, qy, qz, qw]
+  extrinsics_wtc_vec:
+    - 0.567928036
+    - 0.309828778
+    - 0.711448924
+    - 0.7125871
+    - 0.6855466
+    - -0.1074841
+    - -0.1034054
+  
+  # Camera baseline distance
+  baseline: 0.0499846078455448
+
+# Visualization constants
+visualization:
+  light_blue: [0.65098039, 0.74117647, 0.85882353]
+
+# File paths configuration
+paths:
+  # Input data paths - list of directories containing raw .pkl files
+  data_path: [
+             "data/wipe_sea3/rosbag2_2025_09_14-00_55_12/", 
+             ]
+  
+  # Raw data path (used for input)
+  raw_data_path: '${paths.data_path}'
+  
+  # Output data path (where processed results will be saved)
+  out_data_path: '${paths.data_path}'
+
+  # HaMeR model configuration
+  hamer_repo_path: '/home/gumdev/hamer'
+  CACHE_DIR_HAMER: '${paths.hamer_repo_path}/_DATA'
+  hamer_ckpt_path: '${paths.CACHE_DIR_HAMER}/hamer_ckpts/checkpoints/hamer.ckpt'
+
+# Hydra configuration (minimal output)
+hydra:
+  output_subdir: null  
+  run:  
+    dir: .

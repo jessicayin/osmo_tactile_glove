@@ -1,0 +1,7 @@
+#接收的命令类型
+string status
+#灵巧手ID
+int32 hand_id
+---
+#接收数据
+int32[6] curposset

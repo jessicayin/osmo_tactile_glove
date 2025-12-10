@@ -1,0 +1,13 @@
+../Core/Src/glove/common.c:92:8:bowie_i2c_mem_write_it	3
+../Core/Src/glove/common.c:134:8:bowie_i2c_mem_read_it	3
+../Core/Src/glove/common.c:170:13:process_i2c_callback	4
+../Core/Src/glove/common.c:196:6:HAL_I2C_MasterTxCpltCallback	1
+../Core/Src/glove/common.c:201:6:HAL_I2C_MasterRxCpltCallback	1
+../Core/Src/glove/common.c:206:6:HAL_I2C_MemTxCpltCallback	1
+../Core/Src/glove/common.c:211:6:HAL_I2C_MemRxCpltCallback	1
+../Core/Src/glove/common.c:216:6:bhy2_delay_us	2
+../Core/Src/glove/common.c:224:7:get_sensor_error_text	78
+../Core/Src/glove/common.c:467:7:get_sensor_name	89
+../Core/Src/glove/common.c:745:7:get_api_error	11
+../Core/Src/glove/common.c:787:6:print_api_error	1
+../Core/Src/glove/common.c:797:6:get_interrupt_status	1

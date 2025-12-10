@@ -1,0 +1,8 @@
+../Core/Src/glove/bhi360.c:24:8:bhi360_init	1
+../Core/Src/glove/bhi360.c:35:8:upload_firmware_partly	6
+../Core/Src/glove/bhi360.c:69:8:bhi360_upload_firmware	2
+../Core/Src/glove/bhi360.c:116:6:parse_quaternion	2
+../Core/Src/glove/bhi360.c:148:6:parse_magnetometer	2
+../Core/Src/glove/bhi360.c:176:6:parse_magnetometer_meta	2
+../Core/Src/glove/bhi360.c:207:6:parse_acc_gyro_mag_3axis_s16	10
+../Core/Src/glove/bhi360.c:393:6:parse_meta_event	20

@@ -1,0 +1,122 @@
+<mujoco model="right_inspire">
+  <compiler angle="radian" meshdir="./right_meshes/" texturedir="./right_meshes/"/>
+  <!-- 1. fix actuator range and settings. 2. check equality constraints for all linkages. 3. experimentally verify joint limits.  -->
+
+  <asset>
+    <mesh name="base_link" file="base_link.STL"/>
+    <mesh name="right_thumb_swing" file="right_thumb_swing.STL"/>
+    <mesh name="right_thumb_1" file="right_thumb_1.STL"/>
+    <mesh name="right_thumb_2" file="right_thumb_2.STL"/>
+    <mesh name="right_thumb_3" file="right_thumb_3.STL"/>
+    <mesh name="right_index_1" file="right_index_1.STL"/>
+    <mesh name="right_index_2" file="right_index_2.STL"/>
+    <mesh name="right_middle_1" file="right_middle_1.STL"/>
+    <mesh name="right_middle_2" file="right_middle_2.STL"/>
+    <mesh name="right_ring_1" file="right_ring_1.STL"/>
+    <mesh name="right_ring_2" file="right_ring_2.STL"/>
+    <mesh name="right_little_1" file="right_little_1.STL"/>
+    <mesh name="right_little_2" file="right_little_2.STL"/>
+  </asset>
+
+  <worldbody>
+    <body name="palm">
+      <geom name="base_link_collision" pos="0 0 0" quat="0.000563312 0.707388 -0.706825 -0.000562864" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="base_link"/>
+    </body>
+    <body name="right_thumb_swing" pos="0.0211441 0.0268832 0.0707164" quat="0.7068220018146171 0.0005602700014383757 0.0005607120014395105 0.707391001816078">
+      <inertial pos="0.00184773 -0.000437179 0.00313589" quat="0.686668 0.629357 -0.32235 0.168782" mass="0.00115519" diaginertia="6.58579e-08 5.87769e-08 3.77927e-08"/>
+      <joint name="right_thumb_swing_joint" pos="0 0 0" axis="0 0 -1" range="-0.18 1.233"  springdamper="0.1 0.5"/>
+      <geom name="right_thumb_swing_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_thumb_swing"/>
+      <body name="right_thumb_1" pos="0.007567 -0.01145 0.00125" quat="0.70234 0.702342 -0.0819566 -0.0819563">
+        <inertial pos="0.0167591 0.00921112 -0.00940298" quat="0.190246 0.681372 0.19063 -0.680588" mass="0.03" diaginertia="1.43635e-06 1.18366e-06 9.93462e-07"/>
+        <joint name="right_thumb_1_joint" pos="0 0 0" axis="0.193569 0 0.981087" range="0.04 0.92" />
+        <geom name="right_thumb_1_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_thumb_1"/>
+        <body name="right_thumb_2" pos="0.039173 0.011958 -0.00085">
+          <inertial pos="0.0101809 0.00225977 -0.00854143" quat="0.667011 0.668935 -0.232818 -0.231121" mass="0.02" diaginertia="5.04922e-07 4.38694e-07 3.77732e-07"/>
+          <joint name="right_thumb_2_joint" pos="0 0 0" axis="0.193569 0 0.981087" range="0 0.4719" />
+          <geom name="right_thumb_2_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_thumb_2"/>
+          <body name="right_thumb_3" pos="0.020827 0.0074327 0.0002">
+            <inertial pos="0.0168089 0.00363292 -0.00874331" quat="0.610171 0.609003 -0.357713 -0.358953" mass="0.014" diaginertia="9.67936e-07 9.25704e-07 4.39366e-07"/>
+            <joint name="right_thumb_3_joint" pos="0 0 0" axis="0.193569 0 0.981087" range="0 0.570"/>
+            <geom name="right_thumb_3_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_thumb_3"/>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="right_index_1" pos="0.000845413 0.0398283 0.156359" quat="0.7193364 0.6946613 0.0008121 -0.0002848 ">
+      <inertial pos="0.00284972 0.0121607 0.00779933" quat="0.534277 0.463116 -0.534291 0.463254" mass="0.00719948" diaginertia="1.32913e-06 1.28613e-06 5.76926e-07"/>
+      <joint name="right_index_1_joint" pos="0 0 0" axis="0 0 -1" range="-0.089 1.4516" />
+      <geom name="right_index_1_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_index_1"/>
+      <body name="right_index_2" pos="0.0043282 0.032488 -0.0003">
+        <inertial pos="-0.00158838 0.0256545 0.00749252" quat="0.705149 0.704441 -0.0553754 -0.0588394" mass="0.00968687" diaginertia="2.34233e-06 2.30247e-06 3.04577e-07"/>
+        <joint name="right_index_2_joint" pos="0 0 0" axis="0 0 -1" range="-0.21 1.482" />
+        <geom name="right_index_2_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_index_2"/>
+      </body>
+    </body>
+    <body name="right_middle_1" pos="0.000829248 0.0182493 0.156999" quat="0.7071056 0.7071074 0.0008459 -0.0002802">
+      <inertial pos="0.00229271 0.0122779 0.00779932" quat="0.523583 0.475172 -0.523598 0.475307" mass="0.0071995" diaginertia="1.32913e-06 1.28614e-06 5.76927e-07"/>
+      <joint name="right_middle_1_joint" pos="0 0 0" axis="0 0 -1" range="-0.089 1.4516" />
+      <geom name="right_middle_1_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_middle_1"/>
+      <!-- <body name="right_middle_2" pos="-0.0028436 0.032651 -0.0003"> -->
+      <body name="right_middle_2" pos="0.0028436 0.032651 -0.0003">
+        <inertial pos="-7.51984e-05 0.0274488 0.0075006" quat="0.703925 0.703913 -0.0670976 -0.067032" mass="0.0104612" diaginertia="2.84801e-06 2.80723e-06 3.32779e-07"/>
+        <joint name="right_middle_2_joint" pos="0 0 0" axis="0 0 -1" range="-0.21 1.482" />
+        <geom name="right_middle_2_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_middle_2"/>
+      </body>
+    </body>
+    <body name="right_ring_1" pos="0.000811847 -0.00338235 0.156889" quat="0.6883389  0.7253887  0.0008989 -0.0002719">
+      <inertial pos="0.0024053 0.0122563 0.00779932" quat="0.525759 0.472763 -0.525774 0.4729" mass="0.0071995" diaginertia="1.32913e-06 1.28613e-06 5.76927e-07"/>
+      <joint name="right_ring_1_joint" pos="0 0 0" axis="0 0 -1" range="-0.089 1.4516" />
+      <geom name="right_ring_1_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_ring_1"/>
+      <body name="right_ring_2" pos="0.0031431 0.032624 -0.0003">
+        <inertial pos="-0.000667145 0.0256949 0.00749253" quat="0.703979 0.703335 -0.0679937 -0.0714872" mass="0.00968685" diaginertia="2.34233e-06 2.30247e-06 3.04576e-07"/>
+        <joint name="right_ring_2_joint" pos="0 0 0" axis="0 0 -1" range="-0.21 1.482"/>
+        <geom name="right_ring_2_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_ring_2"/>
+      </body>
+    </body>
+    <body name="right_little_1" pos="0.000789845 -0.0247726 0.153769" quat="0.6691368  0.7431386  0.0009545 -0.0002617">
+      <inertial pos="0.0023301 0.0122708 0.00779932" quat="0.524305 0.474372 -0.524323 0.474511" mass="0.0071995" diaginertia="1.32913e-06 1.28613e-06 5.76927e-07"/>
+      <joint name="right_little_1_joint" pos="0 0 0" axis="0 0 -1" range="-0.089 1.4516" />
+      <geom name="right_little_1_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_little_1"/>
+      <body name="right_little_2" pos="0.002943 0.032643 -0.0003">
+        <inertial pos="-0.00241294 0.020835 0.00750031" quat="0.704263 0.704254 -0.0634076 -0.0634084" mass="0.00759259" diaginertia="1.28164e-06 1.23907e-06 2.26499e-07"/>
+        <joint name="right_little_2_joint" pos="0 0 0" axis="0 0 -1" range="-0.21 1.482" />
+        <geom name="right_little_2_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="right_little_2"/>
+      </body>
+    </body>
+  </worldbody>
+  <equality>
+    <joint name = "index_linkage" active="true" joint1="right_index_1_joint" joint2="right_index_2_joint" polycoef="-0.0126 .851 -.00404 0.0866"/>
+  </equality>
+  <equality>
+    <joint name = "middle_linkage" active="true" joint1="right_middle_1_joint" joint2="right_middle_2_joint" polycoef="-0.0126 .851 -.00404 0.0866"/>
+  </equality>
+  <equality>
+    <joint name="ring_linkage" active="true" joint1="right_ring_1_joint" joint2="right_ring_2_joint" polycoef="-0.0126 .851 -.00404 0.0866"/>
+  </equality>
+  <equality>
+    <joint name="little_linkage" active="true" joint1="right_little_1_joint" joint2="right_little_2_joint" polycoef="-0.0126 .851 -.00404 0.0866"/>
+  </equality>
+  <equality>
+    <joint name="thumb_1-2_linkage" active="true" joint1="right_thumb_2_joint" joint2="right_thumb_1_joint" polycoef="6.581 -28.966 46.134 -31.5 8.007" />
+  </equality>
+  <equality>
+    <joint name="thumb_1-3_linkage" active="true" joint1="right_thumb_3_joint" joint2="right_thumb_1_joint" polycoef="-0.089 -0.005 0.424 0 0" />
+  </equality>
+  <actuator>
+    <position name="right_thumb_swing_motor" joint="right_thumb_swing_joint" ctrllimited="true" ctrlrange="-0.18 1.233" gear="1" />
+    <position name="right_thumb_1_motor" joint="right_thumb_1_joint" ctrllimited="true" ctrlrange="0.5376 1.2483" gear="1" />
+    <position name="right_index_1_motor" joint="right_index_1_joint" ctrllimited="true" ctrlrange="-0.089727 1.66" gear="1" />
+    <position name="right_middle_1_motor" joint="right_middle_1_joint" ctrllimited="true" ctrlrange="-0.089727 1.66" gear="1" />
+    <position name="right_ring_1_motor" joint="right_ring_1_joint" ctrllimited="true" ctrlrange="-0.089727 1.66" gear="1" />
+    <position name="right_little_1_motor" joint="right_little_1_joint" ctrllimited="true" ctrlrange="-0.089727 1.66" gear="1" />
+  </actuator>
+  <contact>
+    <exclude name="right_thumb_1" body1="palm" body2="right_thumb_1"/>
+    <exclude name="right_thumb_swing" body1="palm" body2="right_thumb_swing"/>
+    <exclude name="right_thumb_1_swing" body1="right_thumb_1" body2="right_thumb_swing" />
+    <exclude name="right_index_1" body1="palm" body2="right_index_1" />
+    <exclude name ="right_middle_1" body1="palm" body2="right_middle_1" />
+    <exclude name ="right_ring_1" body1="palm" body2="right_ring_1" />
+    <exclude name="right_little_1" body1="palm" body2="right_little_1" />
+  </contact>
+</mujoco>

@@ -1,0 +1,125 @@
+<mujoco model="urdf_left_10_31">
+  <compiler angle="radian" meshdir="./left_meshes/" texturedir="./left_meshes/"/>
+
+  <asset>
+    <mesh name="base_link" file="base_link.STL"/>
+    <mesh name="left_thumb_swing" file="left_thumb_swing.STL"/>
+    <mesh name="left_thumb_1" file="left_thumb_1.STL"/>
+    <mesh name="left_thumb_2" file="left_thumb_2.STL"/>
+    <mesh name="left_thumb_3" file="left_thumb_3.STL"/>
+    <mesh name="left_index_1" file="left_index_1.STL"/>
+    <mesh name="left_index_2" file="left_index_2.STL"/>
+    <mesh name="left_middle_1" file="left_middle_1.STL"/>
+    <mesh name="left_middle_2" file="left_middle_2.STL"/>
+    <mesh name="left_ring_1" file="left_ring_1.STL"/>
+    <mesh name="left_ring_2" file="left_ring_2.STL"/>
+    <mesh name="left_little_1" file="left_little_1.STL"/>
+    <mesh name="left_little_2" file="left_little_2.STL"/>
+  </asset>
+
+  <worldbody>
+    <body name="palm" pos="0.5 0.5 0" quat="0.000563312 0.707388 -0.706825 -0.000562864">
+    <!-- <geom name="base_link_collision" pos="0.5 0.5 0" quat="0.000563312 0.707388 -0.706825 -0.000562864" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="base_link"/> -->
+      <geom name="base_link_collision" pos="0.0 0.0 0" quat="1 0 0 0" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="base_link"/>
+    </body>
+    <body name="left_thumb_swing" pos="0.521144 0.473117 0.0707164" quat="0.706822 0.00056027 0.000560712 0.707391">
+      <inertial pos="-0.00184773 -0.000437179 0.00313589" quat="0.686668 0.629357 0.32235 -0.168782" mass="0.00115519" diaginertia="6.58579e-08 5.87769e-08 3.77927e-08"/>
+      <joint name="left_thumb_swing_joint" pos="0 0 0" axis="0 0 1" range="0 1.7" actuatorfrcrange="-1 1" springdamper="0.1 0.5"/>
+      <geom name="left_thumb_swing_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_thumb_swing"/>
+      <body name="left_thumb_1" pos="-0.007567 -0.01145 0.00125" quat="0.70234 0.702342 0.0819566 0.0819563">
+        <inertial pos="-0.0167591 0.00921112 -0.00940298" quat="0.190246 0.681372 -0.19063 0.680588" mass="0.03" diaginertia="1.43635e-06 1.18366e-06 9.93462e-07"/>
+        <joint name="left_thumb_1_joint" pos="0 0 0" axis="0.193569 0 -0.981087" range="0.04 0.92" actuatorfrcrange="-1 1"/>
+        <geom name="left_thumb_1_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_thumb_1"/>
+        <body name="left_thumb_2" pos="-0.039173 0.011958 -0.00085">
+          <inertial pos="-0.0101809 0.00225977 -0.00854143" quat="0.667011 0.668935 0.232818 0.231121" mass="0.02" diaginertia="5.04922e-07 4.38694e-07 3.77732e-07"/>
+          <joint name="left_thumb_2_joint" pos="0 0 0" axis="0.193569 0 -0.981087" range="0 0.386" actuatorfrcrange="-1 1"/>
+          <geom name="left_thumb_2_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_thumb_2"/>
+          <body name="left_thumb_3" pos="-0.020827 0.0074327 0.0002">
+            <inertial pos="-0.0168089 0.00363292 -0.00874331" quat="0.610171 0.609003 0.357713 0.358953" mass="0.014" diaginertia="9.67936e-07 9.25704e-07 4.39366e-07"/>
+            <joint name="left_thumb_3_joint" pos="0 0 0" axis="0.193569 0 -0.981087" range="0 0.552" actuatorfrcrange="-1 1"/>
+            <geom name="left_thumb_3_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_thumb_3"/>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="left_index_1" pos="0.500845 0.460172 0.156359" quat="0.694662 0.719336 0.000840912 -0.000294962">
+      <inertial pos="0.00284972 0.0121607 -0.00779933" quat="0.534277 0.463116 -0.534291 0.463254" mass="0.00719948" diaginertia="1.32913e-06 1.28613e-06 5.76926e-07"/>
+      <joint name="left_index_1_joint" pos="0 0 0" axis="0 0 -1" range="0 1.6" actuatorfrcrange="-1 1"/>
+      <geom name="left_index_1_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_index_1"/>
+      <body name="left_index_2" pos="0.0043282 0.032488 -0.0003">
+        <inertial pos="-0.00158838 0.0256545 -0.00749252" quat="0.705149 0.704441 -0.0553754 -0.0588394" mass="0.00968687" diaginertia="2.34233e-06 2.30247e-06 3.04577e-07"/>
+        <joint name="left_index_2_joint" pos="0 0 0" axis="0 0 -1" range="0 1.6" actuatorfrcrange="-1 1"/>
+        <geom name="left_index_2_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_index_2"/>
+      </body>
+    </body>
+    <body name="left_middle_1" pos="0.500829 0.481751 0.156999" quat="0.707108 0.707105 0.000845931 -0.000280244">
+      <inertial pos="0.00229271 0.0122779 -0.00779932" quat="0.523583 0.475172 -0.523598 0.475307" mass="0.0071995" diaginertia="1.32913e-06 1.28614e-06 5.76927e-07"/>
+      <joint name="left_middle_1_joint" pos="0 0 0" axis="0 0 -1" range="0 1.6" actuatorfrcrange="-1 1"/>
+      <geom name="left_middle_1_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_middle_1"/>
+      <body name="left_middle_2" pos="0.0028436 0.032651 -0.0003">
+        <inertial pos="-7.51984e-05 0.0274488 -0.0075006" quat="0.703925 0.703913 -0.0670976 -0.067032" mass="0.0104612" diaginertia="2.84801e-06 2.80723e-06 3.32779e-07"/>
+        <joint name="left_middle_2_joint" pos="0 0 0" axis="0 0 -1" range="0 1.6" actuatorfrcrange="-1 1"/>
+        <geom name="left_middle_2_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_middle_2"/>
+      </body>
+    </body>
+    <body name="left_ring_1" pos="0.500812 0.503382 0.156889" quat="0.725389 0.688338 0.000852982 -0.000257987">
+      <inertial pos="0.0024053 0.0122563 -0.00779932" quat="0.525759 0.472763 -0.525774 0.4729" mass="0.0071995" diaginertia="1.32913e-06 1.28613e-06 5.76927e-07"/>
+      <joint name="left_ring_1_joint" pos="0 0 0" axis="0 0 -1" range="0 1.6" actuatorfrcrange="-1 1"/>
+      <geom name="left_ring_1_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_ring_1"/>
+      <body name="left_ring_2" pos="0.0031431 0.032624 -0.0003">
+        <inertial pos="-0.000667145 0.0256949 -0.00749253" quat="0.703979 0.703335 -0.0679937 -0.0714872" mass="0.00968685" diaginertia="2.34233e-06 2.30247e-06 3.04576e-07"/>
+        <joint name="left_ring_2_joint" pos="0 0 0" axis="0 0 -1" range="0 1.6" actuatorfrcrange="-1 1"/>
+        <geom name="left_ring_2_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_ring_2"/>
+      </body>
+    </body>
+    <body name="left_little_1" pos="0.50079 0.524773 0.153769" quat="0.743139 0.669136 0.000859436 -0.000235596">
+      <inertial pos="0.0023301 0.0122708 -0.00779932" quat="0.524305 0.474372 -0.524323 0.474511" mass="0.0071995" diaginertia="1.32913e-06 1.28613e-06 5.76927e-07"/>
+      <joint name="left_little_1_joint" pos="0 0 0" axis="0 0 -1" range="0 1.6" actuatorfrcrange="-1 1"/>
+      <geom name="left_little_1_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_little_1"/>
+      <body name="left_little_2" pos="0.002943 0.032643 -0.0003">
+        <inertial pos="-0.00241294 0.020835 -0.00750031" quat="0.704263 0.704254 -0.0634076 -0.0634084" mass="0.00759259" diaginertia="1.28164e-06 1.23907e-06 2.26499e-07"/>
+        <joint name="left_little_2_joint" pos="0 0 0" axis="0 0 -1" range="0 1.6" actuatorfrcrange="-1 1"/>
+        <geom name="left_little_2_collision" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="left_little_2"/>
+      </body>
+    </body>
+  </worldbody>
+    <equality>
+    <joint name = "index_linkage" active="true" joint1="left_index_1_joint" joint2="left_index_2_joint" polycoef="-1.25 2.11 -0.229"/>
+  </equality>
+  <equality>
+    <joint name = "middle_linkage" active="true" joint1="left_middle_1_joint" joint2="left_middle_2_joint" polycoef="-1.25 2.11 -0.229"/>
+  </equality>
+  <equality>
+    <joint name="ring_linkage" active="true" joint1="left_ring_1_joint" joint2="left_ring_2_joint" polycoef="-1.25 2.11 -0.229" />
+  </equality>
+  <equality>
+    <joint name="little_linkage" active="true" joint1="left_little_1_joint" joint2="left_little_2_joint" polycoef="-1.25 2.11 -0.229" />
+  </equality>
+  <equality>
+    <joint name="thumb_1-2_linkage" active="true" joint1="left_thumb_1_joint" joint2="left_thumb_2_joint" polycoef="1.57 6.92 -16.2 18.8 -8.01" />
+  </equality>
+  <equality>
+    <joint name="thumb_1-3_linkage" active="true" joint1="left_thumb_1_joint" joint2="left_thumb_3_joint" polycoef="3.12 -2.2e-04 -2.81e-08" />
+  </equality>
+<!-- tuning parameters: gear (torque and speed of motor)-->
+  <actuator>
+    <position name="left_thumb_swing_motor" joint="left_thumb_swing_joint" ctrllimited="true" ctrlrange="-1.7 1.7" gear="1" />
+    <position name="left_thumb_1_motor" joint="left_thumb_1_joint" ctrllimited="true" ctrlrange="0 1.7" gear="1" />
+    <position name="left_index_1_motor" joint="left_index_1_joint" ctrllimited="true" ctrlrange="0 1.7" gear="1" />
+    <position name="left_middle_1_motor" joint="left_middle_1_joint" ctrllimited="true" ctrlrange="0 1.7" gear="1" />
+    <position name="left_ring_1_motor" joint="left_ring_1_joint" ctrllimited="true" ctrlrange="0 1.7" gear="1" />
+    <position name="left_little_1_motor" joint="left_little_1_joint" ctrllimited="true" ctrlrange="0 1.7" gear="1" />
+  </actuator>
+  <contact>
+    <exclude name="left_thumb_1" body1="palm" body2="left_thumb_1"/>
+    <exclude name="left_thumb_swing" body1="palm" body2="left_thumb_swing"/>
+
+  </contact>
+    <!---
+    <motor name="left_thumb_1_joint" joint="left_thumb_1_joint" ctrllimited="true" ctrlrange="0.3225 1.0332" gear="1" />
+    <motor name="left_index_1_joint" joint="left_index_1_joint" ctrllimited="true" ctrlrange="1.48106925 3.022448338" gear="1" />
+    <motor name="left_middle_1_joint" joint="left_middle_1_joint" ctrllimited="true" ctrlrange="1.48106925 3.022448338" gear="1" />
+    <motor name="left_ring_1_joint" joint="left_ring_1_joint" ctrllimited="true" ctrlrange="1.48106925 3.022448338" gear="1" />
+    <motor name="left_little_1_joint" joint="left_little_1_joint" ctrllimited="true" ctrlrange="1.48106925 3.022448338" gear="1" />
+  </actuator> -->
+</mujoco>

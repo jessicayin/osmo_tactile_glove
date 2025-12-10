@@ -1,0 +1,428 @@
+<mujoco model="fr3 scene">
+  <include file="psyonic_right_franka_keyframes.xml"/>
+  <compiler angle="radian"/>
+
+  <option integrator="implicitfast"/>
+
+  <size nkey="5"/>
+
+  <visual>
+    <global azimuth="120" elevation="-20"/>
+    <headlight ambient="0.3 0.3 0.3" diffuse="0.6 0.6 0.6" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+  </visual>
+
+  <statistic extent="0.8" center="0.2 0 0.4"/>
+
+  <default>
+    <default class="fr3">
+      <joint armature="0.1" damping="1"/>
+      <site size="0.001 0.005 0.005" group="4" rgba="0.5 0.5 0.5 0.3"/>
+      <general biastype="affine" biasprm="0 -1"/>
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+      <default class="collision">
+        <geom type="mesh" group="3"/>
+      </default>
+    </default>
+    <default class="base_jointmain">
+      <default class="base_jointability_hand">
+        <default class="base_jointvisual_ah">
+          <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.1 0.1 0.1 1"/>
+          <default class="base_jointwrist_visual">
+            <geom rgba="0 0 0 1" mesh="wrist_mesh"/>
+          </default>
+          <default class="base_jointpalm_visual">
+            <geom mesh="palm_mesh"/>
+          </default>
+          <default class="base_jointfinger_visual">
+            <geom rgba="0.15 0.15 0.15 1"/>
+            <default class="base_jointfinger_prox_vis">
+              <geom mesh="finger_prox_mesh"/>
+            </default>
+            <default class="base_jointfinger_int_dist_vis">
+              <geom mesh="finger_int_dist_mesh"/>
+            </default>
+            <default class="base_jointpinky_int_dist_vis">
+              <geom mesh="pinky_int_dist_mesh"/>
+            </default>
+            <default class="base_jointthumb_metacarp_vis">
+              <geom mesh="thumb_metacarp_mesh"/>
+            </default>
+            <default class="base_jointthumb_prox_dist_vis">
+              <geom mesh="thumb_prox_dist_mesh"/>
+            </default>
+          </default>
+        </default>
+        <default class="base_jointcollisions_ah">
+          <geom type="mesh" group="3" solref="0.01 0.99" solimp="0.95 0.99 0.002" rgba="1 1 1 1"/>
+          <default class="base_jointwrist_collision">
+            <geom size="0.018 0.0025 0" type="cylinder"/>
+          </default>
+          <default class="base_jointpalm_collision">
+            <geom solref="0.01 1" solimp="0.98 0.995 0.0005" mesh="palm_hull_mesh"/>
+          </default>
+          <default class="base_jointproximal_collision">
+            <geom mesh="finger_prox_hull_mesh"/>
+          </default>
+          <default class="base_jointint_dist_collision">
+            <geom mesh="finger_int_dist_hull_mesh"/>
+          </default>
+          <default class="base_jointpinky_int_dist_collision">
+            <geom mesh="pinky_int_dist_hull_mesh"/>
+          </default>
+          <default class="base_jointthumb_metacarp_collision">
+            <geom mesh="thumb_metacarp_hull_mesh"/>
+          </default>
+          <default class="base_jointthumb_prox_collision">
+            <geom mesh="thumb_prox_dist_hull_mesh"/>
+          </default>
+        </default>
+        <default class="base_jointjoints">
+          <joint damping="0.001" frictionloss="0.1"/>
+          <general ctrllimited="true" biastype="affine" biasprm="0 -1"/>
+          <default class="base_jointfinger_mcp_joint">
+            <joint range="0 1.74"/>
+            <general ctrlrange="0 1.74"/>
+          </default>
+          <default class="base_jointfinger_pip_joint">
+            <joint range="0.766 2.61"/>
+            <general ctrlrange="0.766 2.61"/>
+          </default>
+          <default class="base_jointthumb_mcp_joint">
+            <joint range="0 1.91"/>
+            <general ctrlrange="0 1.91"/>
+          </default>
+          <default class="base_jointthumb_cmc_joint">
+            <joint range="-2.09 0"/>
+            <general ctrlrange="-2.09 0"/>
+          </default>
+        </default>
+        <default class="base_jointfsr">
+          <site size="0.005 0.003 0.003" group="3" type="box" rgba="0 0 1 0.3"/>
+          <default class="base_jointfsr_0"/>
+          <default class="base_jointfsr_1">
+            <site size="0.005 0.003 0.0035"/>
+          </default>
+          <default class="base_jointfsr_2"/>
+          <default class="base_jointfsr_3">
+            <site size="0.005 0.003 0.0035"/>
+          </default>
+          <default class="base_jointfsr_4">
+            <site size="0.005 0.003 0.0035"/>
+          </default>
+          <default class="base_jointfsr_5">
+            <site size="0.005 0.003 0.0025"/>
+          </default>
+          <default class="base_jointt_fsr_0">
+            <site size="0.005 0.003 0.006"/>
+          </default>
+          <default class="base_jointt_fsr_1">
+            <site size="0.005 0.003 0.0065"/>
+          </default>
+          <default class="base_jointt_fsr_2">
+            <site size="0.005 0.003 0.004"/>
+          </default>
+          <default class="base_jointt_fsr_3">
+            <site size="0.005 0.003 0.0065"/>
+          </default>
+          <default class="base_jointt_fsr_4">
+            <site size="0.005 0.003 0.004"/>
+          </default>
+          <default class="base_jointt_fsr_5">
+            <site size="0.005 0.003 0.007"/>
+          </default>
+        </default>
+      </default>
+    </default>
+  </default>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="black" rgba="0.2 0.2 0.2 1"/>
+    <material name="white"/>
+    <material name="red" rgba="1 0.072272 0.039546 1"/>
+    <material name="gray" rgba="0.863156 0.863156 0.863157 1"/>
+    <material name="button_green" rgba="0.102241 0.571125 0.102242 1"/>
+    <material name="button_red" rgba="0.520996 0.008023 0.013702 1"/>
+    <material name="button_blue" rgba="0.024157 0.445201 0.737911 1"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+    <mesh name="link0_0" file="./franka_fr3/assets/link0_0.obj"/>
+    <mesh name="link0_1" file="./franka_fr3/assets/link0_1.obj"/>
+    <mesh name="link0_2" file="./franka_fr3/assets/link0_2.obj"/>
+    <mesh name="link0_3" file="./franka_fr3/assets/link0_3.obj"/>
+    <mesh name="link0_4" file="./franka_fr3/assets/link0_4.obj"/>
+    <mesh name="link0_5" file="./franka_fr3/assets/link0_5.obj"/>
+    <mesh name="link0_6" file="./franka_fr3/assets/link0_6.obj"/>
+    <mesh name="link1" file="./franka_fr3/assets/link1.obj"/>
+    <mesh name="link2" file="./franka_fr3/assets/link2.obj"/>
+    <mesh name="link3_0" file="./franka_fr3/assets/link3_0.obj"/>
+    <mesh name="link3_1" file="./franka_fr3/assets/link3_1.obj"/>
+    <mesh name="link4_0" file="./franka_fr3/assets/link4_0.obj"/>
+    <mesh name="link4_1" file="./franka_fr3/assets/link4_1.obj"/>
+    <mesh name="link5_0" file="./franka_fr3/assets/link5_0.obj"/>
+    <mesh name="link5_1" file="./franka_fr3/assets/link5_1.obj"/>
+    <mesh name="link5_2" file="./franka_fr3/assets/link5_2.obj"/>
+    <mesh name="link6_0" file="./franka_fr3/assets/link6_0.obj"/>
+    <mesh name="link6_1" file="./franka_fr3/assets/link6_1.obj"/>
+    <mesh name="link6_2" file="./franka_fr3/assets/link6_2.obj"/>
+    <mesh name="link6_3" file="./franka_fr3/assets/link6_3.obj"/>
+    <mesh name="link6_4" file="./franka_fr3/assets/link6_4.obj"/>
+    <mesh name="link6_5" file="./franka_fr3/assets/link6_5.obj"/>
+    <mesh name="link6_6" file="./franka_fr3/assets/link6_6.obj"/>
+    <mesh name="link6_7" file="./franka_fr3/assets/link6_7.obj"/>
+    <mesh name="link7_0" file="./franka_fr3/assets/link7_0.obj"/>
+    <mesh name="link7_1" file="./franka_fr3/assets/link7_1.obj"/>
+    <mesh name="link7_2" file="./franka_fr3/assets/link7_2.obj"/>
+    <mesh name="link7_3" file="./franka_fr3/assets/link7_3.obj"/>
+    <mesh name="link0_coll" file="./franka_fr3/assets/link0.stl"/>
+    <mesh name="link1_coll" file="./franka_fr3/assets/link1.stl"/>
+    <mesh name="link2_coll" file="./franka_fr3/assets/link2.stl"/>
+    <mesh name="link3_coll" file="./franka_fr3/assets/link3.stl"/>
+    <mesh name="link4_coll" file="./franka_fr3/assets/link4.stl"/>
+    <mesh name="link5_coll" file="./franka_fr3/assets/link5.stl"/>
+    <mesh name="link6_coll" file="./franka_fr3/assets/link6.stl"/>
+    <mesh name="link7_coll" file="./franka_fr3/assets/link7.stl"/>
+    <mesh name="base_jointwrist_mesh" file="./psyonic/assets/wristmesh.STL"/>
+    <mesh name="base_jointpalm_mesh" file="./psyonic/assets/FB_palm_ref_MIR.STL"/>
+    <mesh name="base_jointpalm_hull_mesh" file="./psyonic/assets/palm_hull_mir.STL"/>
+    <mesh name="base_jointfinger_prox_mesh" file="./psyonic/assets/idx-F1.STL"/>
+    <mesh name="base_jointfinger_prox_hull_mesh" file="./psyonic/assets/idx-F1-hull.STL"/>
+    <mesh name="base_jointfinger_int_dist_mesh" file="./psyonic/assets/idx-F2-Lg.STL"/>
+    <mesh name="base_jointfinger_int_dist_hull_mesh" file="./psyonic/assets/idx-F2-Lg-hull.STL"/>
+    <mesh name="base_jointpinky_int_dist_mesh" file="./psyonic/assets/idx-F2.STL"/>
+    <mesh name="base_jointpinky_int_dist_hull_mesh" file="./psyonic/assets/idx-F2-hull.STL"/>
+    <mesh name="base_jointthumb_metacarp_mesh" file="./psyonic/assets/thumb-F1-MIR.STL"/>
+    <mesh name="base_jointthumb_metacarp_hull_mesh" file="./psyonic/assets/thumb-F1-MIR-hull.STL"/>
+    <mesh name="base_jointthumb_prox_dist_mesh" file="./psyonic/assets/thumb-F2.STL"/>
+    <mesh name="base_jointthumb_prox_dist_hull_mesh" file="./psyonic/assets/thumb-F2-hull.STL"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+    <body name="base" childclass="fr3" gravcomp="1">
+      <body name="fr3_link0">
+        <geom class="visual" material="black" mesh="link0_0"/>
+        <geom class="visual" material="white" mesh="link0_1"/>
+        <geom class="visual" material="white" mesh="link0_2"/>
+        <geom class="visual" material="white" mesh="link0_3"/>
+        <geom class="visual" material="white" mesh="link0_4"/>
+        <geom class="visual" material="red" mesh="link0_5"/>
+        <geom class="visual" material="black" mesh="link0_6"/>
+        <geom name="fr3_link0_collision" class="collision" mesh="link0_coll"/>
+        <body name="fr3_link1" pos="0 0 0.333">
+          <inertial pos="4.128e-07 -0.0181251 -0.0386036" quat="0.999901 0.0021545 0.00429041 0.0132325" mass="2.92747" diaginertia="0.0186043 0.0181194 0.00538716"/>
+          <joint name="fr3_joint1" pos="0 0 0" axis="0 0 1" range="-2.7437 2.7437" actuatorgravcomp="true" actuatorfrcrange="-87 87"/>
+          <geom name="fr3_link1_collision" class="collision" mesh="link1_coll"/>
+          <geom class="visual" material="white" mesh="link1"/>
+          <body name="fr3_link2" quat="0.707107 -0.707107 0 0">
+            <inertial pos="0.00318289 -0.0743222 0.00881461" quat="0.356855 0.680818 -0.434812 0.469126" mass="2.93554" diaginertia="0.0299291 0.0299291 0.0299291"/>
+            <joint name="fr3_joint2" pos="0 0 0" axis="0 0 1" range="-1.7837 1.7837" actuatorgravcomp="true" actuatorfrcrange="-87 87"/>
+            <geom class="visual" material="white" mesh="link2"/>
+            <geom name="fr3_link2_collision" class="collision" mesh="link2_coll"/>
+            <body name="fr3_link3" pos="0 -0.316 0" quat="0.707107 0.707107 0 0">
+              <inertial pos="0.0407016 -0.00482006 -0.0289731" quat="0.950032 -0.148357 0.229935 0.150201" mass="2.2449" diaginertia="0.0140109 0.0140109 0.0140109"/>
+              <joint name="fr3_joint3" pos="0 0 0" axis="0 0 1" range="-2.9007 2.9007" actuatorgravcomp="true" actuatorfrcrange="-87 87"/>
+              <geom class="visual" material="white" mesh="link3_0"/>
+              <geom class="visual" material="black" mesh="link3_1"/>
+              <geom name="fr3_link3_collision" class="collision" mesh="link3_coll"/>
+              <body name="fr3_link4" pos="0.0825 0 0" quat="0.707107 0.707107 0 0">
+                <inertial pos="-0.0459101 0.0630493 -0.00851879" quat="0.23761 0.892458 -0.00078702 0.383484" mass="2.6156" diaginertia="0.0206104 0.0206104 0.0206104"/>
+                <joint name="fr3_joint4" pos="0 0 0" axis="0 0 1" range="-3.0421 -0.1518" actuatorgravcomp="true" actuatorfrcrange="-87 87"/>
+                <geom class="visual" material="white" mesh="link4_0"/>
+                <geom class="visual" material="black" mesh="link4_1"/>
+                <geom name="fr3_link4_collision" class="collision" mesh="link4_coll"/>
+                <body name="fr3_link5" pos="-0.0825 0.384 0" quat="0.707107 -0.707107 0 0">
+                  <inertial pos="-0.00160396 0.0292536 -0.0972966" quat="0.922285 0.098826 0.0982562 -0.360514" mass="2.32712" diaginertia="0.0182879 0.0182879 0.0182879"/>
+                  <joint name="fr3_joint5" pos="0 0 0" axis="0 0 1" range="-2.8065 2.8065" actuatorgravcomp="true" actuatorfrcrange="-12 12"/>
+                  <geom class="visual" material="white" mesh="link5_0"/>
+                  <geom class="visual" material="white" mesh="link5_1"/>
+                  <geom class="visual" material="black" mesh="link5_2"/>
+                  <geom name="fr3_link5_collision" class="collision" mesh="link5_coll"/>
+                  <body name="fr3_link6" quat="0.707107 0.707107 0 0">
+                    <inertial pos="0.0597131 -0.0410295 -0.0101693" quat="0.593933 0.525442 0.520644 0.316361" mass="1.81704" diaginertia="0.00483538 0.00483538 0.00483538"/>
+                    <joint name="fr3_joint6" pos="0 0 0" axis="0 0 1" range="0.5445 4.5169" actuatorgravcomp="true" actuatorfrcrange="-12 12"/>
+                    <geom class="visual" material="button_green" mesh="link6_0"/>
+                    <geom class="visual" material="white" mesh="link6_1"/>
+                    <geom class="visual" material="white" mesh="link6_2"/>
+                    <geom class="visual" material="gray" mesh="link6_3"/>
+                    <geom class="visual" material="button_red" mesh="link6_4"/>
+                    <geom class="visual" material="white" mesh="link6_5"/>
+                    <geom class="visual" material="black" mesh="link6_6"/>
+                    <geom class="visual" material="button_blue" mesh="link6_7"/>
+                    <geom name="fr3_link6_collision" class="collision" mesh="link6_coll"/>
+                    <body name="fr3_link7" pos="0.088 0 0" quat="0.707107 0.707107 0 0">
+                      <inertial pos="0.00452258 0.00862619 -0.0161633" quat="0.120255 0.394761 -0.799132 0.437139" mass="0.627143" diaginertia="3.076e-07 3.076e-07 3.076e-07"/>
+                      <joint name="fr3_joint7" pos="0 0 0" axis="0 0 1" range="-3.0159 3.0159" actuatorgravcomp="true" actuatorfrcrange="-12 12"/>
+                      <geom class="visual" material="black" mesh="link7_0"/>
+                      <geom class="visual" material="white" mesh="link7_1"/>
+                      <geom class="visual" material="white" mesh="link7_2"/>
+                      <geom class="visual" material="black" mesh="link7_3"/>
+                      <geom name="fr3_link7_collision" class="collision" mesh="link7_coll"/>
+                      <site name="attachment_site" pos="0 0 0.107"/>
+                      <body name="base_jointability_hand" childclass="base_jointability_hand" pos="0 0 0.107" quat="-0.707 0 0 0.707">
+                        <joint name="base_jointbase_joint" pos="0 0 0" axis="0 0 1"/>
+                        <geom class="base_jointwrist_visual" mass="0" mesh="base_jointwrist_mesh"/>
+                        <geom name="base_jointwrist_coll" class="base_jointwrist_collision" pos="0 0 0.0025" mass="0.01591"/>
+                        <geom class="base_jointpalm_visual" pos="-0.0240477 0.00378125 0.0323296" quat="0.0442297 0.00061027 -0.999021 -2.70192e-05" mass="0" mesh="base_jointpalm_mesh"/>
+                        <geom name="base_jointpalm_coll" class="base_jointpalm_collision" pos="-0.0240477 0.00378125 0.0323296" quat="0.0442297 0.00061027 -0.999021 -2.70192e-05" mass="0.3592" mesh="base_jointpalm_hull_mesh"/>
+                        <body name="base_jointindex_prox" pos="-0.0279216 -0.00927034 0.0958706" quat="0.685906 0.0469401 -0.714459 -0.129917" gravcomp="1">
+                          <joint name="base_jointindex_mcp" class="base_jointfinger_mcp_joint" pos="0 0 0" axis="0 0 1"/>
+                          <geom name="base_jointidx_prox_coll" class="base_jointproximal_collision" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244" mass="0.00636" mesh="base_jointfinger_prox_hull_mesh"/>
+                          <geom class="base_jointfinger_prox_vis" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244" mass="0" mesh="base_jointfinger_prox_mesh"/>
+                          <body name="base_jointindex_int_dist" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244">
+                            <joint name="base_jointindex_pip" class="base_jointfinger_pip_joint" pos="0 0 0" axis="0 0 1"/>
+                            <geom class="base_jointint_dist_collision" pos="0.0091241 0 0" quat="1 0 0 0" mass="0.006" mesh="base_jointfinger_int_dist_hull_mesh"/>
+                            <geom class="base_jointfinger_int_dist_vis" pos="0.0091241 0 0" quat="1 0 0 0" mass="0" mesh="base_jointfinger_int_dist_mesh"/>
+                            <site name="base_jointfsr0" class="base_jointfsr_0" pos="0.02936 -0.01697 -0.00435" quat="0 0.995734 -0.0922704 0"/>
+                            <site name="base_jointfsr1" class="base_jointfsr_1" pos="0.02961 -0.01394 0" quat="-0.702371 0.702371 -0.0817001 0.0817001"/>
+                            <site name="base_jointfsr2" class="base_jointfsr_2" pos="0.02936 -0.01697 0.00435" quat="0.995734 0 0 -0.0922704"/>
+                            <site name="base_jointfsr3" class="base_jointfsr_3" pos="0.01472 -0.011 -0.00435" quat="0 0.959532 -0.281601 0"/>
+                            <site name="base_jointfsr4" class="base_jointfsr_4" pos="0.01472 -0.01099 0.00435" quat="0.959382 0 0 -0.282111"/>
+                            <site name="base_jointfsr5" class="base_jointfsr_5" pos="0.03704 -0.01785 0" quat="-0.165511 0.687464 0.165511 0.687464"/>
+                          </body>
+                        </body>
+                        <body name="base_jointmiddle_prox" pos="-0.00841718 -0.0115172 0.0990634" quat="0.704562 0.0715738 -0.698395 -0.103508" gravcomp="1">
+                          <joint name="base_jointmiddle_mcp" class="base_jointfinger_mcp_joint" pos="0 0 0" axis="0 0 1"/>
+                          <geom class="base_jointproximal_collision" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244" mass="0.00636" mesh="base_jointfinger_prox_hull_mesh"/>
+                          <geom class="base_jointfinger_prox_vis" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244" mass="0" mesh="base_jointfinger_prox_mesh"/>
+                          <body name="base_jointmiddle_int_dist" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244">
+                            <joint name="base_jointmiddle_pip" class="base_jointfinger_pip_joint" pos="0 0 0" axis="0 0 1"/>
+                            <geom class="base_jointint_dist_collision" pos="0.0091241 0 0" quat="1 0 0 0" mass="0.006" mesh="base_jointfinger_int_dist_hull_mesh"/>
+                            <geom class="base_jointfinger_int_dist_vis" pos="0.0091241 0 0" quat="1 0 0 0" mass="0" mesh="base_jointfinger_int_dist_mesh"/>
+                            <site name="base_jointfsr6" class="base_jointfsr_0" pos="0.02936 -0.01697 -0.00435" quat="0 0.995734 -0.0922704 0"/>
+                            <site name="base_jointfsr7" class="base_jointfsr_1" pos="0.02961 -0.01394 0" quat="-0.702371 0.702371 -0.0817001 0.0817001"/>
+                            <site name="base_jointfsr8" class="base_jointfsr_2" pos="0.02936 -0.01697 0.00435" quat="0.995734 0 0 -0.0922704"/>
+                            <site name="base_jointfsr9" class="base_jointfsr_3" pos="0.01472 -0.011 -0.00435" quat="0 0.959532 -0.281601 0"/>
+                            <site name="base_jointfsr10" class="base_jointfsr_4" pos="0.01472 -0.01099 0.00435" quat="0.959382 0 0 -0.282111"/>
+                            <site name="base_jointfsr11" class="base_jointfsr_5" pos="0.03704 -0.01785 0" quat="-0.165511 0.687464 0.165511 0.687464"/>
+                          </body>
+                        </body>
+                        <body name="base_jointring_prox" pos="0.0117529 -0.0103946 0.0967038" quat="0.721351 0.0986547 -0.681173 -0.0769649" gravcomp="1">
+                          <joint name="base_jointring_mcp" class="base_jointfinger_mcp_joint" pos="0 0 0" axis="0 0 1"/>
+                          <geom class="base_jointproximal_collision" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244" mass="0.00636" mesh="base_jointfinger_prox_hull_mesh"/>
+                          <geom class="base_jointfinger_prox_vis" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244" mass="0" mesh="base_jointfinger_prox_mesh"/>
+                          <body name="base_jointring_int_dist" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244">
+                            <joint name="base_jointring_pip" class="base_jointfinger_pip_joint" pos="0 0 0" axis="0 0 1"/>
+                            <geom class="base_jointint_dist_collision" pos="0.0091241 0 0" quat="1 0 0 0" mass="0.006" mesh="base_jointfinger_int_dist_hull_mesh"/>
+                            <geom class="base_jointfinger_int_dist_vis" pos="0.0091241 0 0" quat="1 0 0 0" mass="0" mesh="base_jointfinger_int_dist_mesh"/>
+                            <site name="base_jointfsr12" class="base_jointfsr_0" pos="0.02936 -0.01697 -0.00435" quat="0 0.995734 -0.0922704 0"/>
+                            <site name="base_jointfsr13" class="base_jointfsr_1" pos="0.02961 -0.01394 0" quat="-0.702371 0.702371 -0.0817001 0.0817001"/>
+                            <site name="base_jointfsr14" class="base_jointfsr_2" pos="0.02936 -0.01697 0.00435" quat="0.995734 0 0 -0.0922704"/>
+                            <site name="base_jointfsr15" class="base_jointfsr_3" pos="0.01472 -0.011 -0.00435" quat="0 0.959532 -0.281601 0"/>
+                            <site name="base_jointfsr16" class="base_jointfsr_4" pos="0.01472 -0.01099 0.00435" quat="0.959382 0 0 -0.282111"/>
+                            <site name="base_jointfsr17" class="base_jointfsr_5" pos="0.03704 -0.01785 0" quat="-0.165511 0.687464 0.165511 0.687464"/>
+                          </body>
+                        </body>
+                        <body name="base_jointpinky_prox" pos="0.0308633 -0.00716283 0.0907346" quat="0.719226 0.122363 -0.681748 -0.0544096" gravcomp="1">
+                          <joint name="base_jointpinky_mcp" class="base_jointfinger_mcp_joint" pos="0 0 0" axis="0 0 1"/>
+                          <geom class="base_jointproximal_collision" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244" mass="0.00636" mesh="base_jointfinger_prox_hull_mesh"/>
+                          <geom class="base_jointfinger_prox_vis" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244" mass="0" mesh="base_jointfinger_prox_mesh"/>
+                          <body name="base_jointpinky_int_dist" pos="0.0384727 0.0032577 0" quat="0.999108 0 0 0.0422244">
+                            <joint name="base_jointpinky_pip" class="base_jointfinger_pip_joint" pos="0 0 0" axis="0 0 1"/>
+                            <geom class="base_jointpinky_int_dist_collision" pos="0.0091241 0 0" quat="1 0 0 0" mass="0.006" mesh="base_jointpinky_int_dist_hull_mesh"/>
+                            <geom class="base_jointpinky_int_dist_vis" pos="0.0091241 0 0" quat="1 0 0 0" mass="0" mesh="base_jointpinky_int_dist_mesh"/>
+                            <site name="base_jointfsr18" class="base_jointfsr_0" pos="0.02556 -0.01391 -0.00435" quat="0 0.997965 -0.0637597 0"/>
+                            <site name="base_jointfsr19" class="base_jointfsr_1" pos="0.02517 -0.0111 0" quat="-0.705266 0.705266 -0.0509897 0.0509897"/>
+                            <site name="base_jointfsr20" class="base_jointfsr_2" pos="0.02556 -0.01391 0.00435" quat="0.997965 0 0 -0.0637597"/>
+                            <site name="base_jointfsr21" class="base_jointfsr_3" pos="0.0131 -0.00943 -0.00435" quat="0 0.965439 -0.26063 0"/>
+                            <site name="base_jointfsr22" class="base_jointfsr_4" pos="0.0131 -0.00943 0.00435" quat="0.965439 0 0 -0.26063"/>
+                            <site name="base_jointfsr23" class="base_jointfsr_5" pos="0.03142 -0.01438 0" quat="-0.144691 0.692145 0.144691 0.692145" size="0.005 0.003 0.00385"/>
+                          </body>
+                        </body>
+                        <body name="base_jointthumb_metacarp" pos="-0.0240477 0.00378125 0.0323296" quat="-0.0947972 0.0440301 -0.00419696 0.994514" gravcomp="1">
+                          <joint name="base_jointthumb_cmc" class="base_jointthumb_cmc_joint" pos="0 0 0" axis="0 0 1"/>
+                          <geom class="base_jointthumb_metacarp_vis" pos="0.0278284 0 0.0147507" quat="0.608761 0.793353 0 0" mass="0" mesh="base_jointthumb_metacarp_mesh"/>
+                          <geom class="base_jointthumb_metacarp_collision" pos="0.0278284 0 0.0147507" quat="0.608761 0.793353 0 0" mass="0.002" mesh="base_jointthumb_metacarp_hull_mesh"/>
+                          <body name="base_jointthumb_mcp" pos="0.0278284 0 0.0147507" quat="0.608761 0.793353 0 0">
+                            <joint name="base_jointthumb_mcp" class="base_jointthumb_mcp_joint" pos="0 0 0" axis="0 0 1"/>
+                            <geom class="base_jointthumb_prox_collision" pos="0.0651867 0.0233402 0.00393483" quat="3.21978e-07 -0.985259 -0.171069 5.59046e-08" mass="0.06" mesh="base_jointthumb_prox_dist_hull_mesh"/>
+                            <geom class="base_jointthumb_prox_dist_vis" pos="0.0651867 0.0233402 0.00393483" quat="3.21978e-07 -0.985259 -0.171069 5.59046e-08" mass="0" mesh="base_jointthumb_prox_dist_mesh"/>
+                            <site name="base_jointfsr24" class="base_jointt_fsr_0" pos="0.04747 0.01988 -0.001239" quat="-0.40374 0.891071 0.18885 -0.0855701"/>
+                            <site name="base_jointfsr25" class="base_jointt_fsr_1" pos="0.04721 0.02124 0.006439" quat="0.776114 -0.595533 -0.126211 0.164491"/>
+                            <site name="base_jointfsr26" class="base_jointt_fsr_2" pos="0.04896 0.01654 0.01241" quat="0.965204 -0.159361 -0.0337701 0.204561"/>
+                            <site name="base_jointfsr27" class="base_jointt_fsr_3" pos="0.03739 0.01536 -0.001289" quat="-0.40374 0.891071 0.18885 -0.0855701"/>
+                            <site name="base_jointfsr28" class="base_jointt_fsr_4" pos="0.03888 0.012 0.01244" quat="0.965204 -0.159361 -0.0337701 0.204561"/>
+                            <site name="base_jointfsr29" class="base_jointt_fsr_5" pos="0.05591 0.0216 0.00558" quat="0.760351 -0.610951 0.20037 -0.0919601"/>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <equality>
+    <joint name="base_jointindex_linkage" joint1="base_jointindex_pip" joint2="base_jointindex_mcp" polycoef="0.723498 1.05851 0 0 0"/>
+    <joint name="base_jointmiddle_linkage" joint1="base_jointmiddle_pip" joint2="base_jointmiddle_mcp" polycoef="0.723498 1.05851 0 0 0"/>
+    <joint name="base_jointring_linkage" joint1="base_jointring_pip" joint2="base_jointring_mcp" polycoef="0.723498 1.05851 0 0 0"/>
+    <joint name="base_jointpinky_linkage" joint1="base_jointpinky_pip" joint2="base_jointpinky_mcp" polycoef="0.723498 1.05851 0 0 0"/>
+    <weld name="psyonic_wrist_to_franka" body1="fr3_link7" body2="base_jointability_hand"/>
+  </equality>
+
+  <actuator>
+    <general name="fr3_joint1" class="fr3" joint="fr3_joint1" ctrlrange="-2.7437 2.7437" gainprm="4500" biasprm="0 -4500 -450"/>
+    <general name="fr3_joint2" class="fr3" joint="fr3_joint2" ctrlrange="-1.7837 1.7837" gainprm="4500" biasprm="0 -4500 -450"/>
+    <general name="fr3_joint3" class="fr3" joint="fr3_joint3" ctrlrange="-2.9007 2.9007" gainprm="3500" biasprm="0 -3500 -350"/>
+    <general name="fr3_joint4" class="fr3" joint="fr3_joint4" ctrlrange="-3.0421 -0.1518" gainprm="3500" biasprm="0 -3500 -350"/>
+    <general name="fr3_joint5" class="fr3" joint="fr3_joint5" ctrlrange="-2.8065 2.8065" gainprm="2000" biasprm="0 -2000 -200"/>
+    <general name="fr3_joint6" class="fr3" joint="fr3_joint6" ctrlrange="0.5445 4.5169" gainprm="2000" biasprm="0 -2000 -200"/>
+    <general name="fr3_joint7" class="fr3" joint="fr3_joint7" ctrlrange="-3.0159 3.0159" gainprm="2000" biasprm="0 -2000 -200"/>
+    <general name="base_jointindex_mcp_actuator" class="base_jointfinger_mcp_joint" joint="base_jointindex_mcp"/>
+    <general name="base_jointmiddle_mcp_actuator" class="base_jointfinger_mcp_joint" joint="base_jointmiddle_mcp"/>
+    <general name="base_jointring_mcp_actuator" class="base_jointfinger_mcp_joint" joint="base_jointring_mcp"/>
+    <general name="base_jointpinky_mcp_actuator" class="base_jointfinger_mcp_joint" joint="base_jointpinky_mcp"/>
+    <general name="base_jointthumb_flexor_actuator" class="base_jointthumb_mcp_joint" joint="base_jointthumb_mcp"/>
+    <general name="base_jointthumb_rotator_actuator" class="base_jointthumb_cmc_joint" joint="base_jointthumb_cmc"/>
+  </actuator>
+
+  <sensor>
+    <touch site="base_jointfsr0"/>
+    <touch site="base_jointfsr1"/>
+    <touch site="base_jointfsr2"/>
+    <touch site="base_jointfsr3"/>
+    <touch site="base_jointfsr4"/>
+    <touch site="base_jointfsr5"/>
+    <touch site="base_jointfsr6"/>
+    <touch site="base_jointfsr7"/>
+    <touch site="base_jointfsr8"/>
+    <touch site="base_jointfsr9"/>
+    <touch site="base_jointfsr10"/>
+    <touch site="base_jointfsr11"/>
+    <touch site="base_jointfsr12"/>
+    <touch site="base_jointfsr13"/>
+    <touch site="base_jointfsr14"/>
+    <touch site="base_jointfsr15"/>
+    <touch site="base_jointfsr16"/>
+    <touch site="base_jointfsr17"/>
+    <touch site="base_jointfsr18"/>
+    <touch site="base_jointfsr19"/>
+    <touch site="base_jointfsr20"/>
+    <touch site="base_jointfsr21"/>
+    <touch site="base_jointfsr22"/>
+    <touch site="base_jointfsr23"/>
+    <touch site="base_jointfsr24"/>
+    <touch site="base_jointfsr25"/>
+    <touch site="base_jointfsr26"/>
+    <touch site="base_jointfsr27"/>
+    <touch site="base_jointfsr28"/>
+    <touch site="base_jointfsr29"/>
+  </sensor>
+
+  <keyframe>
+    <key name="home" qpos="0 0 0 -1.57079 0 1.57079 -0.7853 0 0 0 0 0 0 0 0 0 0 0" ctrl="0 0 0 -1.57079 0 1.57079 -0.7853 0 0 0 0 0 0"/>
+    <key name="base_jointpinch" qpos="0 0 0 0 0 0 0 0.00307291 -0.00253723 -6.35818e-05 0.999278 -0.000174131 -0.000606429 0.0379898 0.925967 1.60588 0.000777301 0.746735" qvel="0 0 0 0 0 0 0 0 0 0 -1.02385e-11 -3.06893e-11 0 0 -1.09671e-12 1.37962e-12 0 1.71603e-12" ctrl="0 0 0 0 0 0 0 0.9396 0 0 0 0.8595 -1.3376"/>
+    <key name="base_jointopen_hand" qpos="0 0 0 0 0 0 0 0.000109508 0.000543645 -6.31577e-05 0.999997 0.00117756 -0.00188007 -0.000400602 0.000741252 0.746652 0.000766511 0.746699" qvel="0 0 0 0 0 0 0 0 0 0 6.44714e-12 -1.05539e-11 0 -1.06652e-12 0 0 0 0"/>
+    <key name="base_jointsmall_sine_wave" qpos="0 0 0 0 0 0 0 0.000125717 0.000553512 -6.34092e-05 0.999999 1.00062e-06 -0.0015281 -0.00028984 0.830086 1.62445 0.664458 1.44875" qvel="0 0 0 0 0 0 0 0 0 0 0 1.91303e-11 0 0 0 0 0 0" ctrl="0 0 0 0 0 0 0 0.8265 0.6612 0.5655 0.4524 0.5539 -0.5225"/>
+    <key name="base_jointthumb_only" qpos="0 0 0 0 0 0 0 0.000996981 -0.00338537 -6.35675e-05 0.99722 0.000420536 -0.000625237 0.0745071 0.000748372 0.746675 0.000772991 0.746721" qvel="0 0 0 0 0 0 0 0 0 0 5.65636e-12 -9.49358e-12 0 -1.19037e-12 1.93533e-12 0 1.75109e-12 0" ctrl="0 0 0 0 0 0 0 0 0 0 0 1.46115 -0.9823"/>
+  </keyframe>
+</mujoco>

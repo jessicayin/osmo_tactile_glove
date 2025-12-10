@@ -1,0 +1,8 @@
+../Core/Src/glove/common.c:56:8:bhy2_i2c_read	1
+../Core/Src/glove/common.c:70:8:bhy2_i2c_write	1
+../Core/Src/glove/common.c:89:6:bhy2_delay_us	2
+../Core/Src/glove/common.c:99:7:get_sensor_error_text	78
+../Core/Src/glove/common.c:342:7:get_sensor_name	89
+../Core/Src/glove/common.c:620:7:get_api_error	11
+../Core/Src/glove/common.c:662:6:print_api_error	1
+../Core/Src/glove/common.c:672:6:get_interrupt_status	1

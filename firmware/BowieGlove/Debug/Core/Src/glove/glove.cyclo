@@ -1,0 +1,13 @@
+C:/Users/kundusayantan/Documents/GitHub/GUM/hardware/glove/fw/BowieGlove/tinyusb/src/class/cdc/cdc_device.h:218:24:tud_cdc_write	1
+../Core/Src/glove/glove.c:104:6:glove_mux_reset	1
+../Core/Src/glove/glove.c:111:6:scan_mux_channel	3
+../Core/Src/glove/glove.c:131:19:glove_mux_set_channel	2
+../Core/Src/glove/glove.c:153:6:init_glove	6
+../Core/Src/glove/glove.c:183:8:init_island	6
+../Core/Src/glove/glove.c:343:6:glove_update_data	4
+../Core/Src/glove/glove.c:388:6:glove_send_quat_data	1
+../Core/Src/glove/glove.c:450:6:glove_send_mag_data	1
+../Core/Src/glove/glove.c:527:21:glove_coms_write	3
+../Core/Src/glove/glove.c:553:9:flush_glove	5
+../Core/Src/glove/glove.c:580:9:flush_mag_island	1
+../Core/Src/glove/glove.c:589:9:flush_quat_island	1

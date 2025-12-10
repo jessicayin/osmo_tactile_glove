@@ -1,0 +1,3 @@
+../Core/Src/usb/usb_descriptors.c:66:16:tud_descriptor_device_cb	1
+../Core/Src/usb/usb_descriptors.c:91:16:tud_descriptor_configuration_cb	1
+../Core/Src/usb/usb_descriptors.c:114:17:tud_descriptor_string_cb	5

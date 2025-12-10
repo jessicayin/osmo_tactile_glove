@@ -1,0 +1,2 @@
+../Core/Src/comms/cobs.c:60:20:cobs_encode	64	static
+../Core/Src/comms/cobs.c:163:20:cobs_decode	64	static

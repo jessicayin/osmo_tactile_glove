@@ -1,0 +1,14 @@
+#接收的命令类型
+string status
+#灵巧手ID
+int32 hand_id
+#手指设置角度值(范围0-1000)
+int32 force0
+int32 force1
+int32 force2
+int32 force3
+int32 force4
+int32 force5
+---
+# 是否发出成功
+bool force_accepted
