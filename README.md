@@ -7,6 +7,9 @@ Project website: [jessicayin.github.io/osmo_tactile_glove](https://jessicayin.gi
 
 ArXiv: [https://arxiv.org/abs/2512.08920](https://arxiv.org/abs/2512.08920)
 
+# OSMO Hardware
+
+Hardware guides and PCB files are on the `website` branch of this repo.
 
 # OSMO Glove Data Pipeline
 
