@@ -4,7 +4,7 @@ This guide covers how to assemble the glove electronics. We begin by soldering t
 
 ## Required Supplies
 ### Glove Components
-- Enameled magnet wire/ tinsel wire
+- Enameled magnet wire or tinsel wire
 - 12 x sensor boards
 - 1 x MCU board
 - MuMetal sheet

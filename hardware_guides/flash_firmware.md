@@ -1,19 +1,49 @@
 # Flashing OSMO Glove Firmware
+This guide will review how to flash the firmware for the OSMO glove. We use a custom firmware for the Bosch magnetometers, which enables unique device addresses to support the large quantity of magnetometers in our system. The firmware is completely open-sourced and can be further developed as needed.
 
-Required:
+## Required Supplies
+### Glove Components
+- MCU board with sensor boards soldered and connected
 
-Electronics
-- STM32 flasher
-- pin
-- USB C to USB A cable
+### Equipment
+- STLinkV3 Programmer
+- TagConnect TC2030-IDC-NL
+- USB C - USB A cable*
 
-Software
-- STM32 IDE (if want to view/edit code)
-- STM32 programmer (if just want to flash software)
+*Note: USB C - USB A cables are strongly recommended over USB C - USB C cables for interfacing with the glove. Due to stricter data transfer standards with USB A, we can only guarantee reliable funcionality with USB C - USB A cables.
 
-1. Install the software (link)
-2. Ubuntu + MacOS permissions
-(include screenshots as necessary)
+### Software
+- [STM32 Cube IDE](https://www.st.com/en/development-tools/stm32cubeide.html) (to view/edit firmware)
+
+## Instructions
+
+### 1. Install the STM32 software.
+Installation link: [https://www.st.com/en/development-tools/stm32cubeide.html](https://www.st.com/en/development-tools/stm32cubeide.html).
+
+## 2. Plug in and grant sudo permissions to STLinkV3 programmer.
+In Terminal:
+```
+#list USB devices
+lsusb
+
+#look for device
+Bus 005 Device 006: ID 0483:374f STMicroelectronics STLINK-V3
+
+#grant permission
+#specific example
+sudo chmod 777 /dev/bus/usb/005/006
+
+#generic example
+sudo chmod 777 /dev/bus/usb/<BUS NUMBER>/<DEVICE NUMBER>
+```
+## 3. Clone the firmware from the osmo_tactile_glove_code repo.
+Firmware folder: [Firmware](https://github.com/jessicayin/osmo_tactile_glove_code/tree/main/firmware)
+
+Note that we have two versions: RTOS and non-RTOS. We aim to have the output message match exactly across the two, you can think of RTOS being the multi-threading version and non-RTOS as the single thread version.
+
+RTOS has the advantage of faster output, currently set at 50Hz. Non-RTOS is easier to work with for debugging/print statements and is more stable. We use the non-RTOS version in the paper. 
+
+## 4. Open the firmware
 3. Get the firmware from the repo
 - RTOS version (50Hz but less stable?)
 - stable version (20Hz but more consistent)
