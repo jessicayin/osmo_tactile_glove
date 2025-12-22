@@ -25,8 +25,12 @@ In the paper, we use braided 4 strand tinsel wire from [Maeden Innovation Co.](h
 
 Please refer to the [AnySkin](https://any-skin.github.io/) work for more details on fabrication.
 
-For the 3D printed molds, we recommend a high-resolution resin print for minimal texture on the magnetic patches. We used the Stratasys Objet with VeroWhite in this work.
+For the 3D printed molds, we recommend a high-resolution resin print for minimal texture on the magnetic patches. We used the Stratasys Objet with VeroWhite in this work. TODO: upload 3d print mold files
 
+#### Magnetic Particles FAQ
+Update 12/21/25
+
+You can place an order by contacting Magnequench here: https://mqitechnology.com/support-contact/contact-us/ and work with a sales rep, they usually respond quickly (within 1-2 days in my experience) and are helpful with technical advice. We use MQFP-15-7 (25µM) - make sure NOT to order MQP (missing "F" in the product name). The difference is the particle size, and MQFP particles are about 100x smaller than MQP particles, which makes a huge difference in uniform distribution while curing the magnetic skins (source: [AnySkin](https://any-skin.github.io/)). It has been some time since we've ordered but the lead time was ~2-3 weeks from Thailand. 
 
 ### Equipment
 | Item | Quantity | Purpose | Link to Purchase | Price |
@@ -43,6 +47,13 @@ For the 3D printed molds, we recommend a high-resolution resin print for minimal
 | Chipquik SMD4300TF30 flux (Optional) | 1 | Significantly improve soldering quality | [Digikey](https://www.digikey.com/en/products/detail/chip-quik-inc/SMD4300TF30/7035053) | $39.99 |
 | UV glue + UV flashlight (Optional) | 1 | Strengthen solder joints | [Amazon](https://a.co/d/7nifiRX) | $12.74 |
 | Xacto knife (Optional) | 1 | Trim magnetic patches | [Amazon](https://a.co/d/iCEcXmX) | $8.89 |
+
+
+#### Pulse Magnetizer FAQ
+Update 12/21/25
+
+This is the specific pulse magnetizer: https://www.magnet-physik.de/wp-content/uploads/2023/02/38565336-IM-K-e-3171.pdf from Magnet-Physik. Magnet-Physik also offers a magnetizing service for batches, and you can reach out to them via their website. When magnetizing the magnetic skins, they should be stacked vertically (i.e., one skin directly on top of another skin) and located in the center of the chamber, which will impart the greatest possible magnetization. I approximated this by eye and stacked them neatly by hand so unfortunately I don't have any specific fixtures to share.
+
 
 ## Glove Assembly
 | Item | Quantity | Purpose | Link to Purchase | Price |
