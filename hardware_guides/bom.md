@@ -50,10 +50,20 @@ You can place an order by contacting Magnequench here: https://mqitechnology.com
 
 
 #### Pulse Magnetizer FAQ
-Update 12/21/25
+Updated 12/26/25
 
 This is the specific pulse magnetizer: https://www.magnet-physik.de/wp-content/uploads/2023/02/38565336-IM-K-e-3171.pdf from Magnet-Physik. Magnet-Physik also offers a magnetizing service for batches, and you can reach out to them via their website. When magnetizing the magnetic skins, they should be stacked vertically (i.e., one skin directly on top of another skin) and located in the center of the chamber, which will impart the greatest possible magnetization. I approximated this by eye and stacked them neatly by hand so unfortunately I don't have any specific fixtures to share.
 
+Magnetization settings:
+- Output 1
+- Max Energy: 10000 Ws
+- Max Voltage: 2000 V (max value)
+- Continuous Output: 100 W
+- Max Impulse Current: 5.0 kA
+- IP Code: IP 20
+- Cycle Time: 12.0 s
+- Max Temperature: 50 C
+- Function/Waveform A
 
 ## Glove Assembly
 | Item | Quantity | Purpose | Link to Purchase | Price |
