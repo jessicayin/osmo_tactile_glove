@@ -52,7 +52,9 @@ You can place an order by contacting Magnequench here: https://mqitechnology.com
 #### Pulse Magnetizer FAQ
 Updated 12/26/25
 
-This is the specific pulse magnetizer: https://www.magnet-physik.de/wp-content/uploads/2023/02/38565336-IM-K-e-3171.pdf from Magnet-Physik. Magnet-Physik also offers a magnetizing service for batches, and you can reach out to them via their website. When magnetizing the magnetic skins, they should be stacked vertically (i.e., one skin directly on top of another skin) and located in the center of the chamber, which will impart the greatest possible magnetization. I approximated this by eye and stacked them neatly by hand so unfortunately I don't have any specific fixtures to share.
+This is the specific pulse magnetizer: https://www.magnet-physik.de/wp-content/uploads/2023/02/38565336-IM-K-e-3171.pdf from Magnet-Physik. Magnet-Physik also offers a magnetizing service for batches, and you can reach out to them via their website. If you have access to university resoures, consider reaching out to academic labs studying materials science / phyiscs / related sciences and asking if they have this machine.
+
+When magnetizing the magnetic skins, they should be stacked vertically (i.e., one skin directly on top of another skin) and located in the center of the chamber, which will impart the greatest possible magnetization. I approximated this by eye and stacked them neatly by hand so unfortunately I don't have any specific fixtures to share.
 
 Magnetization settings:
 - Output 1
