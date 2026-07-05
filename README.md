@@ -77,7 +77,7 @@ If you find this work helpful, please consider citing:
 
 # OSMO 项目详细分析报告
 
-> **分析人**: Robusr  
+> **分析人**: @Robusr  
 > **日期**: 2026年6月16日  
 > **仓库状态**: `main` 分支, commit `bfc7328`  
 > **分析范围**: 完整代码库走查，覆盖硬件固件、数据管线、策略训练与机器人部署四大模块
