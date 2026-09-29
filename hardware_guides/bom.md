@@ -1,6 +1,6 @@
 # [DIY OSMO glove kit now available for purchase here](https://shop.wowrobo.com/products/osmo-tactile-glove?variant=49244977856729)
 
-<sub>I do not make any money or profit from sales of this kit.</sub>
+I do not make any money or profit from sales of this kit.
 
 # Bill of Materials
 
