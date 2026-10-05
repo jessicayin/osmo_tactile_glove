@@ -32,6 +32,9 @@
 #include "tusb.h"
 
 #include "glove/glove.h"
+#include "glove/debug_log.h"
+#include "glove/watchdog.h"
+#include "glove/usb_service.h"
 //#include "glove/glove.c"
 
 /* USER CODE END Includes */
@@ -52,6 +55,44 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+static volatile uint8_t usb_service_pending = 0U;
+static volatile uint8_t usb_recovery_requested = 0U;
+static uint32_t usb_tx_fail_count = 0U;
+
+void bowie_usb_note_tx_success(void)
+{
+  usb_tx_fail_count = 0U;
+}
+
+void bowie_usb_note_tx_failure(void)
+{
+  if (usb_tx_fail_count < 0xFFFFFFFFU)
+  {
+    usb_tx_fail_count++;
+  }
+  if (usb_tx_fail_count >= 20U)
+  {
+    usb_recovery_requested = 1U;
+  }
+}
+
+void bowie_usb_poll(void)
+{
+  if (usb_recovery_requested)
+  {
+    usb_recovery_requested = 0U;
+    usb_tx_fail_count = 0U;
+    (void)tud_disconnect();
+    HAL_Delay(50);
+    (void)tud_connect();
+  }
+  if (usb_service_pending)
+  {
+    usb_service_pending = 0U;
+    tud_task();
+    tud_cdc_write_flush();
+  }
+}
 
 /* USER CODE BEGIN PV */
 
@@ -128,21 +169,22 @@ int main(void)
 
 //   while(1)
 //   {
-//	  printf("----------------\r\n");
+//	  BOWIE_LOG("----------------\r\n");
 //	  scan_mux_channel(0);
 //	  scan_mux_channel(2);
 //	  scan_mux_channel(3);
 //	  scan_mux_channel(5);
 //	  scan_mux_channel(7);
-//	  printf("----- init -----\r\n");
+//	  BOWIE_LOG("----- init -----\r\n");
 //	  init_glove();
 //	  HAL_Delay(5000);
-//	  printf("----init done---\r\n");
+//	  BOWIE_LOG("----init done---\r\n");
 //   }
 
 
     HAL_Delay(1000);
-  	init_glove();
+  bowie_watchdog_init();
+  init_glove();
 
 
 //	uint8_t work_buffer[WORK_BUFFER_SIZE];
@@ -168,8 +210,12 @@ int main(void)
 //  	result = bhy2_get_phys_sensor_info(phys_sensor_id, &info, glove_devices[0].dev);
 
     while(1){
+		bowie_usb_poll();
 
 		glove_update_data();
+		bowie_watchdog_feed();
+
+		bowie_usb_poll();
 
     /* USER CODE END WHILE */
 
@@ -281,9 +327,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   //  HAL_GPIO_TogglePin(GPIOA, RED_LED_STATUS_Pin);
   if (htim->Instance == TIM8)
   {
+	usb_service_pending = 1U;
 	HAL_GPIO_TogglePin(GPIOA, YELLOW_LED_START_Pin);
-	tud_task(); //send data over usb
-	tud_cdc_write_flush();
   }
 }
 /* USER CODE END 4 */
@@ -315,7 +360,7 @@ void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+     ex: BOWIE_LOG("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
