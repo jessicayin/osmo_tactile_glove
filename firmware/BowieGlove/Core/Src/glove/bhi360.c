@@ -14,6 +14,9 @@
 #include "bhi360.h"
 #include "comms/bowie.pb.h"
 #include "glove.h"
+#include "glove/debug_log.h"
+#include "glove/watchdog.h"
+#include "glove/usb_service.h"
 
 int8_t bhi360_init(struct bhy2_dev *dev, struct mag_data_dev *device){
 	int8_t rslt = BHY2_OK;
@@ -36,6 +39,8 @@ int8_t upload_firmware_partly(struct bhy2_dev *dev)
 
     for (uint32_t i = 0; (i < len) && (rslt == BHY2_OK); i += incr)
     {
+        bowie_watchdog_feed();
+        bowie_usb_poll();
         if (incr > (len - i)) /* If last payload */
         {
             incr = len - i;
@@ -47,10 +52,10 @@ int8_t upload_firmware_partly(struct bhy2_dev *dev)
 
         rslt = bhy2_upload_firmware_to_ram_partly(&bhy2_firmware_image[i], len, i, incr, dev);
 
-//        printf("%.2f%% complete\r", (float)(i + incr) / (float)len * 100.0f);
+//        BOWIE_LOG("%.2f%% complete\r", (float)(i + incr) / (float)len * 100.0f);
     }
 
-//    printf("\n");
+//    BOWIE_LOG("\n");
 
     return rslt;
 }
@@ -66,7 +71,7 @@ int8_t bhi360_upload_firmware(uint8_t boot_stat, struct bhy2_dev *dev)
     //		results[8] = bhy2_boot_from_ram(glove_devices[idx].dev);
 
 
-//    printf("Loading firmware into RAM.\r\n");
+//    BOWIE_LOG("Loading firmware into RAM.\r\n");
 
     rslt = upload_firmware_partly(dev);
 //    rslt = bhy2_upload_firmware_to_ram(bhy2_firmware_image, sizeof(bhy2_firmware_image), dev);
@@ -74,7 +79,7 @@ int8_t bhi360_upload_firmware(uint8_t boot_stat, struct bhy2_dev *dev)
 //    temp_rslt = bhy2_get_error_value(&sensor_error, dev);
 //    if (sensor_error)
 //    {
-//        printf("%s\r\n", get_sensor_error_text(sensor_error));
+//        BOWIE_LOG("%s\r\n", get_sensor_error_text(sensor_error));
 //    }
     if(rslt != BHY2_OK)
     {
@@ -84,14 +89,14 @@ int8_t bhi360_upload_firmware(uint8_t boot_stat, struct bhy2_dev *dev)
 //    print_api_error(temp_rslt, dev);
 
 
-//    printf("Booting from RAM.\r\n");
+//    BOWIE_LOG("Booting from RAM.\r\n");
     rslt = bhy2_boot_from_ram(dev);
-    printf("boot_from_ram: %d\r\n", rslt);
+    BOWIE_LOG("boot_from_ram: %d\r\n", rslt);
 
 //    temp_rslt = bhy2_get_error_value(&sensor_error, dev);
 //    if (sensor_error)
 //    {
-//        printf("%s\r\n", get_sensor_error_text(sensor_error));
+//        BOWIE_LOG("%s\r\n", get_sensor_error_text(sensor_error));
 //    }
 
 //    print_api_error(rslt, dev);
@@ -112,6 +117,7 @@ void parse_quaternion(const struct bhy2_fifo_parse_data_info *callback_info, voi
     }
 
     bhy2_parse_quaternion(callback_info->data_ptr, &data);
+    dev->last_data_ms = HAL_GetTick();
 
     uint64_t timestamp = *callback_info->time_stamp; /* Store the last timestamp */
 
@@ -138,6 +144,7 @@ void parse_magnetometer(const struct bhy2_fifo_parse_data_info *callback_info, v
 	}
 
 	bhy2_parse_xyz(callback_info->data_ptr, &data);
+	dev->last_data_ms = HAL_GetTick();
 
 	uint64_t timestamp = *callback_info->time_stamp; /* Store the last timestamp */
 
@@ -146,7 +153,7 @@ void parse_magnetometer(const struct bhy2_fifo_parse_data_info *callback_info, v
 	ns = (uint32_t)(timestamp - (s * UINT64_C(1000000000)));
 
 	//encode and send to usb
-//	printf("original parse event\r\n");
+//	BOWIE_LOG("original parse event\r\n");
 	glove_send_mag_data(dev->count, s, ns, dev->finger, dev->link, dev->sensor_id, data.x, data.y, data.z);
 
 }
@@ -164,6 +171,7 @@ void parse_magnetometer_meta(const struct bhy2_fifo_parse_data_info *callback_in
 	}
 
 	bhy2_parse_xyz(callback_info->data_ptr, &data);
+	dev->last_data_ms = HAL_GetTick();
 
 	uint64_t timestamp = *callback_info->time_stamp; /* Store the last timestamp */
 
@@ -172,7 +180,7 @@ void parse_magnetometer_meta(const struct bhy2_fifo_parse_data_info *callback_in
 	ns = (uint32_t)(timestamp - (s * UINT64_C(1000000000)));
 
 	//encode and send to usb
-//	printf("meta parse event\r\n");
+//	BOWIE_LOG("meta parse event\r\n");
 	glove_send_mag_data(dev->count, s, ns, dev->finger, dev->link, dev->sensor_id+20, data.x, data.y, data.z);
 
 
@@ -180,7 +188,7 @@ void parse_magnetometer_meta(const struct bhy2_fifo_parse_data_info *callback_in
 
 void parse_meta_event(const struct bhy2_fifo_parse_data_info *callback_info, void *callback_ref)
 {
-    (void)callback_ref;
+    struct mag_data_dev *dev = (struct mag_data_dev *)callback_ref;
     uint8_t meta_event_type = callback_info->data_ptr[0];
     uint8_t byte1 = callback_info->data_ptr[1];
     uint8_t byte2 = callback_info->data_ptr[2];
@@ -199,94 +207,82 @@ void parse_meta_event(const struct bhy2_fifo_parse_data_info *callback_info, voi
         return;
     }
 
+    (void)event_text;
     switch (meta_event_type)
     {
         case BHY2_META_EVENT_FLUSH_COMPLETE:
-            printf("%s Flush complete for sensor id %u\r\n", event_text, byte1);
+            BOWIE_LOG("%s Flush complete for sensor id %u\r\n", event_text, byte1);
             break;
         case BHY2_META_EVENT_SAMPLE_RATE_CHANGED:
-            printf("%s Sample rate changed for sensor id %u\r\n", event_text, byte1);
+            BOWIE_LOG("%s Sample rate changed for sensor id %u\r\n", event_text, byte1);
             break;
         case BHY2_META_EVENT_POWER_MODE_CHANGED:
-            printf("%s Power mode changed for sensor id %u\r\n", event_text, byte1);
+            BOWIE_LOG("%s Power mode changed for sensor id %u\r\n", event_text, byte1);
             break;
         case BHY2_META_EVENT_ALGORITHM_EVENTS:
-            printf("%s Algorithm event\r\n", event_text);
+            BOWIE_LOG("%s Algorithm event\r\n", event_text);
             break;
         case BHY2_META_EVENT_SENSOR_STATUS:
-            printf("%s Accuracy for sensor id %u changed to %u\r\n", event_text, byte1, byte2);
+            BOWIE_LOG("%s Accuracy for sensor id %u changed to %u\r\n", event_text, byte1, byte2);
             break;
         case BHY2_META_EVENT_BSX_DO_STEPS_MAIN:
-            printf("%s BSX event (do steps main)\r\n", event_text);
+            BOWIE_LOG("%s BSX event (do steps main)\r\n", event_text);
             break;
         case BHY2_META_EVENT_BSX_DO_STEPS_CALIB:
-            printf("%s BSX event (do steps calib)\r\n", event_text);
+            BOWIE_LOG("%s BSX event (do steps calib)\r\n", event_text);
             break;
         case BHY2_META_EVENT_BSX_GET_OUTPUT_SIGNAL:
-            printf("%s BSX event (get output signal)\r\n", event_text);
+            BOWIE_LOG("%s BSX event (get output signal)\r\n", event_text);
             break;
         case BHY2_META_EVENT_SENSOR_ERROR:
-            printf("%s Sensor id %u reported error 0x%02X\r\n", event_text, byte1, byte2);
+            if (dev) dev->recover_requested = 1U;
+            BOWIE_LOG("%s Sensor id %u reported error 0x%02X\r\n", event_text, byte1, byte2);
             break;
         case BHY2_META_EVENT_FIFO_OVERFLOW:
-            printf("%s FIFO overflow\r\n", event_text);
+            if (dev) dev->recover_requested = 1U;
+            BOWIE_LOG("%s FIFO overflow\r\n", event_text);
             break;
         case BHY2_META_EVENT_DYNAMIC_RANGE_CHANGED:
-            printf("%s Dynamic range changed for sensor id %u\r\n", event_text, byte1);
+            BOWIE_LOG("%s Dynamic range changed for sensor id %u\r\n", event_text, byte1);
             break;
         case BHY2_META_EVENT_FIFO_WATERMARK:
-            printf("%s FIFO watermark reached\r\n", event_text);
+            BOWIE_LOG("%s FIFO watermark reached\r\n", event_text);
             break;
         case BHY2_META_EVENT_INITIALIZED:
-            printf("%s Firmware initialized. Firmware version %u\r\n", event_text, ((uint16_t)byte2 << 8) | byte1);
+            BOWIE_LOG("%s Firmware initialized. Firmware version %u\r\n", event_text, ((uint16_t)byte2 << 8) | byte1);
             break;
         case BHY2_META_TRANSFER_CAUSE:
-            printf("%s Transfer cause for sensor id %u\r\n", event_text, byte1);
+            BOWIE_LOG("%s Transfer cause for sensor id %u\r\n", event_text, byte1);
             break;
         case BHY2_META_EVENT_SENSOR_FRAMEWORK:
-            printf("%s Sensor framework event for sensor id %u\r\n", event_text, byte1);
+            BOWIE_LOG("%s Sensor framework event for sensor id %u\r\n", event_text, byte1);
             break;
         case BHY2_META_EVENT_RESET:
-            printf("%s Reset event %d, 0x%02X,  0x%01X\r\n", event_text, meta_event_type, byte1, byte2);
-            ///error checking
-            uint8_t error_code = 0;
-            uint8_t result;
-            result = bhy2_get_error_reg(BHY2_REG_INT_STATUS, &error_code, glove_devices[0].dev);
-			printf("Register: 0x%02X, Error Code: %d, 0x%02X\r\n", BHY2_REG_INT_STATUS, result, error_code);
-
-			result = bhy2_get_error_reg(BHY2_REG_ERROR_VALUE, &error_code, glove_devices[0].dev);
-			printf("Register: 0x%02X, Error Code: %d, 0x%02X\r\n", BHY2_REG_ERROR_VALUE, result, error_code);
-
-			result = bhy2_get_error_reg(BHY2_REG_ERROR_AUX, &error_code, glove_devices[0].dev);
-			printf("Register: 0x%02X, Error Code: %d, 0x%02X\r\n", BHY2_REG_ERROR_AUX, result, error_code);
-
-			result = bhy2_get_error_reg(BHY2_REG_DEBUG_VALUE, &error_code, glove_devices[0].dev);
-			printf("Register: 0x%02X, Error Code: %d, 0x%02X\r\n", BHY2_REG_DEBUG_VALUE, result, error_code);
-
-			result = bhy2_get_error_reg(BHY2_REG_DEBUG_STATE, &error_code, glove_devices[0].dev);
-			printf("Register: 0x%02X, Error Code: %d, 0x%02X\r\n", BHY2_REG_DEBUG_STATE, result, error_code);
-
-			/**
-			 * @brief Function to get the post mortem data
-			 * @param[out] post_mortem  : Reference to the data buffer to store the post mortem data
-			 * @param[in] buffer_len    : Length of the data buffer
-			 * @param[out] actual_len   : Actual length of the post mortem data
-			 * @param[in] dev           : Device reference
-			 * @return API error codes
-			 */
-//			int8_t bhy2_get_post_mortem_data(uint8_t *post_mortem, uint32_t buffer_len, uint32_t *actual_len, struct bhy2_dev *dev);
-
-			struct bhy2_post_mortem post_mortem_data = { 0 };
-			uint32_t pmlen = 0;
-			printf("size of postmortem struct: %d", sizeof(struct bhy2_post_mortem));
-			result = get_post_mortem_data(&post_mortem_data, glove_devices[0].dev);
-//			result = bhy2_get_post_mortem_data(&post_mortem_data, sizeof(struct bhy2_post_mortem), &pmlen, glove_devices[0].dev);
-			printf("Post mortem data: %d", result);
+            if (dev) dev->recover_requested = 1U;
+#if BOWIE_DEBUG_PRINT
+            BOWIE_LOG("%s Reset event %d, 0x%02X,  0x%01X\r\n", event_text, meta_event_type, byte1, byte2);
+            {
+                uint8_t error_code = 0U;
+                uint8_t result = 0U;
+                (void)result;
+                result = bhy2_get_error_reg(BHY2_REG_INT_STATUS, &error_code, dev->dev);
+                BOWIE_LOG("Register: 0x%02X, Error Code: %d, 0x%02X\r\n", BHY2_REG_INT_STATUS, result, error_code);
+                result = bhy2_get_error_reg(BHY2_REG_ERROR_VALUE, &error_code, dev->dev);
+                BOWIE_LOG("Register: 0x%02X, Error Code: %d, 0x%02X\r\n", BHY2_REG_ERROR_VALUE, result, error_code);
+                result = bhy2_get_error_reg(BHY2_REG_ERROR_AUX, &error_code, dev->dev);
+                BOWIE_LOG("Register: 0x%02X, Error Code: %d, 0x%02X\r\n", BHY2_REG_ERROR_AUX, result, error_code);
+                {
+                    struct bhy2_post_mortem post_mortem_data = { 0 };
+                    (void)get_post_mortem_data(&post_mortem_data, dev->dev);
+                    BOWIE_LOG("Post mortem data collected\r\n");
+                }
+            }
+#endif
             break;
         case BHY2_META_EVENT_SPACER:
             break;
         default:
-            printf("%s Unknown meta event with id: %u\r\n", event_text, meta_event_type);
+            BOWIE_LOG("%s Unknown meta event with id: %u\r\n", event_text, meta_event_type);
             break;
     }
 }

@@ -36,6 +36,7 @@
 *
 */
 
+#include <stdio.h>
 #include "bhy2_hif.h"
 
 /*! Mask definitions for SPI read/write address */

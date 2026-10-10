@@ -35,6 +35,9 @@ typedef struct mag_data_dev {
 	uint32_t count;
 	bool init;
 	struct bhy2_dev *dev;
+	uint8_t present;
+	uint32_t last_data_ms;
+	uint8_t recover_requested;
 } t_mag_info;
 
 //int8_t bhi360_init(struct bhy2_dev *dev);

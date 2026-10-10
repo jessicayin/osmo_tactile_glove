@@ -46,6 +46,8 @@
 #include "i2c.h"
 #include "tim.h"
 #include "bhi360.h"
+#include "glove/debug_log.h"
+#include "glove/debug_log.h"
 
 //#define BHA260_SHUTTLE_ID  0x139
 //#define BHI260_SHUTTLE_ID  0x119
@@ -53,36 +55,78 @@
 //#define DEV_ADDRESS_B 0x3C
 
 
+static int8_t bowie_i2c_hal_result(HAL_StatusTypeDef result)
+{
+    return (result == HAL_OK) ? BHY2_OK : BHY2_E_IO;
+}
+
+void bowie_i2c_recover(void)
+{
+    static volatile uint8_t recovering = 0U;
+    if (recovering)
+    {
+        return;
+    }
+    recovering = 1U;
+    (void)HAL_I2C_DeInit(&hi2c1);
+    MX_I2C1_Init();
+    recovering = 0U;
+}
+
 int8_t bhy2_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t length, void *intf_ptr)
 {
-    (void)intf_ptr;
-    struct mag_data_dev* dev;
-    dev = intf_ptr;
+    struct mag_data_dev *dev = (struct mag_data_dev *)intf_ptr;
+    uint16_t dev_address;
+    HAL_StatusTypeDef result = HAL_ERROR;
+    uint8_t attempt;
 
-    uint16_t DevAddress = dev->dev_addr;
-    return HAL_I2C_Mem_Read(&hi2c1, (DevAddress<<1), (uint16_t) reg_addr, sizeof(reg_addr), reg_data, (uint16_t) length, 25);
-//    return HAL_I2C_Mem_Read_IT(&hi2c1, (DevAddress<<1), (uint16_t) reg_addr, sizeof(reg_addr), reg_data, (uint16_t) length);
+    if (dev == NULL)
+    {
+        return BHY2_E_NULL_PTR;
+    }
 
+    dev_address = dev->dev_addr;
+    for (attempt = 0U; attempt < 2U; attempt++)
+    {
+        result = HAL_I2C_Mem_Read(&hi2c1, (uint16_t)(dev_address << 1),
+                                  (uint16_t)reg_addr, I2C_MEMADD_SIZE_8BIT,
+                                  reg_data, (uint16_t)length, 25U);
+        if (result == HAL_OK)
+        {
+            break;
+        }
+    }
+
+    return bowie_i2c_hal_result(result);
 }
 
 //HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout)
 
 int8_t bhy2_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t length, void *intf_ptr)
 {
-//    (void)intf_ptr;
-    struct mag_data_dev* dev;
-    dev = intf_ptr;
+    struct mag_data_dev *dev = (struct mag_data_dev *)intf_ptr;
+    uint16_t dev_address;
+    HAL_StatusTypeDef result = HAL_ERROR;
+    uint8_t attempt;
 
-    uint16_t DevAddress = dev->dev_addr;
-    uint16_t MemAddress = (uint16_t) reg_addr;
-    uint16_t MemAddSize = sizeof(MemAddress);
-    uint16_t Size = (uint16_t) length;
-    uint32_t Timeout = 50;
-    HAL_StatusTypeDef result = HAL_I2C_Mem_Write(&hi2c1, (DevAddress<<1), MemAddress, 1, reg_data, Size, Timeout);
-    return result;
-//    return HAL_I2C_Mem_Write_IT(&hi2c1, (DevAddress<<1), (uint16_t) reg_addr, sizeof(reg_addr), reg_data, (uint16_t) length);
+    if (dev == NULL || reg_data == NULL)
+    {
+        return BHY2_E_NULL_PTR;
+    }
 
+    dev_address = dev->dev_addr;
+    for (attempt = 0U; attempt < 2U; attempt++)
+    {
+        result = HAL_I2C_Mem_Write(&hi2c1, (uint16_t)(dev_address << 1),
+                                   (uint16_t)reg_addr, I2C_MEMADD_SIZE_8BIT,
+                                   (uint8_t *)reg_data, (uint16_t)length, 50U);
+        if (result == HAL_OK)
+        {
+            break;
+        }
+    }
 
+    return bowie_i2c_hal_result(result);
 }
 
 void bhy2_delay_us(uint32_t us, void *private_data)
@@ -662,7 +706,7 @@ void print_api_error(int8_t rslt, struct bhy2_dev *dev)
 {
     if (rslt != BHY2_OK)
     {
-        printf("%s\r\n", get_api_error(rslt));
+        BOWIE_LOG("%s\r\n", get_api_error(rslt));
 
         exit(0);
     }
@@ -671,5 +715,6 @@ void print_api_error(int8_t rslt, struct bhy2_dev *dev)
 bool get_interrupt_status(void)
 {
 
+    return false;
 }
 
