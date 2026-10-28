@@ -142,6 +142,12 @@ static int8_t bhy2_get_and_process_fifo_support(uint8_t *int_status,
                 return *rslt;
             }
 
+            if (bytes_read == 0U)
+            {
+                *rslt = BHY2_E_IO;
+                return *rslt;
+            }
+
             fifo_temp->read_length += bytes_read;
         }
 
@@ -217,6 +223,11 @@ int8_t bhy2_get_and_process_fifo(uint8_t *work_buffer, uint32_t buffer_size, str
                 return rslt;
             }
 
+            if (bytes_read == 0U)
+            {
+                return BHY2_E_IO;
+            }
+
             fifos.read_length += bytes_read;
 //            printf("non wake up fifo %d\r\n", fifos.read_length);
         }
@@ -243,6 +254,11 @@ int8_t bhy2_get_and_process_fifo(uint8_t *work_buffer, uint32_t buffer_size, str
             if (rslt != BHY2_OK)
             {
                 return rslt;
+            }
+
+            if (bytes_read == 0U)
+            {
+                return BHY2_E_IO;
             }
 
             fifos.read_length += bytes_read;
@@ -1561,9 +1577,9 @@ int8_t bhy2_get_variant_id(uint32_t *variant_id, struct bhy2_dev *dev)
 
 static int8_t get_callback_info(uint8_t sensor_id, struct bhy2_fifo_parse_callback_table *info, struct bhy2_dev *dev)
 {
-
     int8_t rslt = BHY2_OK;
-    uint8_t i = 0, j;
+    uint8_t j;
+    uint8_t found = 0U;
 
     if ((dev != NULL) && (info != NULL))
     {
@@ -1572,14 +1588,14 @@ static int8_t get_callback_info(uint8_t sensor_id, struct bhy2_fifo_parse_callba
             if (sensor_id == dev->table[j].sensor_id)
             {
                 *info = dev->table[j];
-                i = j;
+                found = 1U;
                 break;
             }
         }
 
-        if (i == BHY2_MAX_SIMUL_SENSORS)
+        if (!found)
         {
-            rslt = BHy2_E_INSUFFICIENT_MAX_SIMUL_SENSORS;
+            rslt = BHY2_E_INVALID_PARAM;
         }
         else
         {
@@ -1731,11 +1747,24 @@ static int8_t parse_fifo(enum bhy2_fifo_type source, struct bhy2_fifo_buffer *fi
                 break;
             default:
                 rslt = get_callback_info(tmp_sensor_id, &info, dev);
-                rslt = check_return_value(rslt);
+                if (rslt != BHY2_OK)
+                {
+                    break;
+                }
+
+                if (dev->event_size[tmp_sensor_id] == 0U)
+                {
+                    rslt = BHY2_E_INVALID_PARAM;
+                    break;
+                }
+
                 rslt = get_buffer_status(fifo_p, dev->event_size[tmp_sensor_id], &status); /*lint !e838 suppressing
                                                                                             * previously assigned value
                                                                                             * not used info */
-                rslt = check_return_value(rslt);
+                if (rslt != BHY2_OK)
+                {
+                    break;
+                }
                 if (status != BHY2_BUFFER_STATUS_OK)
                 {
                     break;
@@ -1757,7 +1786,10 @@ static int8_t parse_fifo(enum bhy2_fifo_type source, struct bhy2_fifo_buffer *fi
         }
     }
 
-    rslt = parse_fifo_support(fifo_p);
+    if (rslt == BHY2_OK)
+    {
+        rslt = parse_fifo_support(fifo_p);
+    }
 
     return rslt;
 }

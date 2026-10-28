@@ -80,6 +80,8 @@ void setup_interfaces(bool reset_power, enum bhy2_intf intf);
 void close_interfaces(enum bhy2_intf intf);
 int8_t bhy2_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t length, void *intf_ptr);
 int8_t bhy2_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t length, void *intf_ptr);
+void bowie_i2c_recover(void);
+void bowie_i2c_recover(void);
 void bhy2_delay_us(uint32_t us, void *private_data);
 bool get_interrupt_status(void);
 
